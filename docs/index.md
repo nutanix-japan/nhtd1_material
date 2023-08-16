@@ -118,13 +118,13 @@ Each cluster has a dedicated domain controller VM, **DC**, responsible for provi
 
 | Group            | Username(s)              | Password |
 |-----------------| ------------------------- |------------|
-| Administrators    | Administrator             | nutanix/4u | 
-| SSP Admins        | adminuser01-adminuser25   | nutanix/4u | 
-| SSP Developers    | devuser01-devuser25       | nutanix/4u | 
-| SSP Consumers     | consumer01-consumer25     | nutanix/4u |
-| SSP Operators     | operator01-operator25     | nutanix/4u |
-| SSP Custom        | custom01-custom25         | nutanix/4u |
-| Bootcamp Users    | user01-user25             | nutanix/4u |
+| Administrators    | Administrator             | default password | 
+| SSP Admins        | adminuser01-adminuser25   | default password | 
+| SSP Developers    | devuser01-devuser25       | default password | 
+| SSP Consumers     | consumer01-consumer25     | default password |
+| SSP Operators     | operator01-operator25     | default password |
+| SSP Custom        | custom01-custom25         | default password |
+| Bootcamp Users    | user01-user25             | default password |
 
 
 ## Access Instructions
