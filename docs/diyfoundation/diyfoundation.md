@@ -118,6 +118,12 @@ formation script in the next section.
         cluster -s 10.42.xx.32 create # Enter 'Y' when prompted to proceed
         ```
 
+    === "All SSDs Node"
+
+        ```bash
+        cluster -s 10.42.xx.32 create # Enter 'Y' when prompted to proceed
+        ```
+
 4.  After the single node cluster is formed, run the following commands
     to configure it
 
@@ -426,8 +432,8 @@ To shorten the lab time, we use command line to access foundation VM and downloa
 
 ## Takeaways
 
-- You have successfully prepared your environment in a single operation called Foundation:
-- 
+You have successfully prepared your environment in a single operation called Foundation:
+
   - Installed Hypervisor (AHV) - This can also be ESXi or Hyper-V
   - Installed CVM (AOS)
     - Distributed File System (Data Plane)
