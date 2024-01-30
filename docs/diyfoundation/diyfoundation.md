@@ -51,15 +51,15 @@ Execute the following commands to power off any running VMs on the cluster, stop
 <!-- termynal -->
 
 ```bash
-cluster stop        
->>> Enter 'I agree' when prompted to proceed
+> cluster stop        
+# Enter 'I agree' when prompted to proceed
 ```
 #
 <!-- termynal -->
 
 ```bash
-cluster destroy     
->>> Enter 'Y' when prompted to proceed
+> cluster destroy     
+# Enter 'Y' when prompted to proceed
 ```
 
 Once you have made sure that all VMs and services are stopped, you can proceed to the next steps. 
@@ -152,16 +152,21 @@ formation script in the next section.
 
            After the ``cluster`` is created, Prism will reflect Critical Health status due to lack of redundancy.
 
-
-    ``` bash
-    ncli cluster edit-params new-name=POCxx-D
-    ```
-    ``` bash
-    ncli cluster add-to-name-servers servers=10.42.196.10
-    ```
-    ``` bash
-    ncli user reset-password user-name='admin' password=<check password in RX> 
-    ```
+#
+<!-- termynal -->
+``` bash
+> ncli cluster edit-params new-name=POCxx-D
+```
+#
+<!-- termynal -->
+``` bash
+> ncli cluster add-to-name-servers servers=10.42.196.10
+```
+#
+<!-- termynal -->
+``` bash
+> ncli user reset-password user-name='admin' password=<check password in RX> 
+```
 
 ## Install Foundation VM
 
@@ -273,19 +278,25 @@ To shorten the lab time, we use command line to access foundation VM and downloa
 
 1.  Open a terminal in your desktop computer (Putty or Mac Terminal) and ssh to **Foundation VM** through foundation IP ``10.42.xx.45``. The default password for the Foundation VM can be found on step 7 of the [Field Installation Guide](https://portal.nutanix.com/page/documents/details?targetId=Field-Installation-Guide-v5_5:fie-foundation-vm-install-on-workstation-t.html).
 
-    ```bash title="Login to the console of Foundation VM"
-    ssh -l nutanix <Foundation VM IP>  # use default password - ask instructor if you are unaware
-    # example
-    # ssh -l nutanix 10.42.xx.51     
-    ```
-    ```bash
-    cd foundation
-    cd nos
-    curl -O http://10.42.194.11/images/AOS/6.7.1/nutanix_installer_package-release-fraser-6.7.1-stable-x86_64.tar.gz
-    ```
+#
+<!-- termynal -->
 
-    !!!Alert
-           When you see 100% finished status, AOS 6.7.1 package has been downloaded to ``~/foundation/nos`` folder.
+```bash
+> ssh -l nutanix <Foundation VM IP>  # use default password - ask instructor if you are unaware
+# example
+# ssh -l nutanix 10.42.xx.51     
+```
+#
+<!-- termynal -->
+
+```bash
+> cd foundation
+> cd nos
+> curl -O http://10.42.194.11/images/AOS/6.7.1/nutanix_installer_package-release-fraser-6.7.1-stable-x86_64.tar.gz
+```
+
+!!!Alert
+        When you see 100% finished status, AOS 6.7.1 package has been downloaded to ``~/foundation/nos`` folder.
 
 1.  From you desktop computer, open Google Chrome browser and navigate to Foundation VM's IP
 

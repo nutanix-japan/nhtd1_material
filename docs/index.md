@@ -56,11 +56,3 @@ As we are able to provide three/four node clusters and single node clusters in t
 ## Access Instructions
 
 Check your HPOC cluster reservation email for details.
-
-<!-- termynal -->
-
-```
-> pip install termynal
----> 100%
-Installed
-```
