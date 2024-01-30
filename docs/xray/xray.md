@@ -18,21 +18,21 @@ For environments where DHCP is unavailable (or there isn't a sufficiently large 
 
 1.  Open a terminal and SSH to Node-D CVM, enter CVM credentials and execute following commands
 
-    ```bash title="Connect to the Single Node CVM"
+    ```bash title="Login to the console of Node D CVM"
     ssh -l nutanix 10.42.xx.32   #<check password in RX>
     ```
 
 2. Upload the X-Ray Image
 
-    ```bash title="Run this in Single Node CVM"
+    ```bash title="Run this in the CVM of Node D"
     acli image.create X-Ray container=Images image_type=kDiskImage source_url=http://10.42.194.11/images/Xray/4.4.1/xray-4.4.1.qcow2
     ```
-    !!!caution
+    !!!warning
           Wait until you see that the image upload is complete with a message ``X-Ray: Complete``
 
 2.  You can confirm presence of X-Ray image by running the following command in the same shell
 
-    ```bash title="Run this in Single Node CVM"
+    ```bash title="Run this in the CVM of Node D"
     acli image.list
     ```
     ``` { .text .no-copy }
@@ -92,14 +92,14 @@ Now we switch to Prism portal of single node cluster D
 
 6.  Determine the IP address of the NIC (eth0) on the **Primary** network of the X-Ray VM from Prism Element and note it down
 
-!!!note
-       It is critical that you select the IP address of the network adapter assigned to the **Primary** network (you can confirm by comparing the MAC address in the VM console to the MAC address shown in Prism).
+    !!!note
+        It is critical that you select the IP address of the network adapter assigned to the **Primary** network (you can confirm by comparing the MAC address in the VM console to the MAC address shown in Prism).
 
 ## Configuring X-Ray
 
 1.  Open ``https://X-RAY-VM-IP`` (E.g: https://10.42.xx.52) in a browser
     
-    !!!caution
+    !!!warning
               Make sure to use the X-RAY-VM-IP that you noted down from the previous section
 
 3.  Click on Log in with Local Account
@@ -184,7 +184,7 @@ While X-Ray offers many testing options, we will use **Peak Performance Microben
 
 7.  Click **Run test**.
 
-    !!!caution
+    !!!warning
               X-Ray can run one test per target at a time. Many tests can be queued for a single target, allowing X-Ray to automatically run through multiple tests without requiring manual intervention. Through automation, X-Ray can drastically decrease the amount of time to conduct a POC.
 
 8.  Click on **View Test**
@@ -219,12 +219,12 @@ While X-Ray offers many testing options, we will use **Peak Performance Microben
 
     ![](images/repor-and-export.png)
 
-!!!tip
-       The graphs are interactive, and you can click and drag to zoom into specific data/times on each individual graph. You can zoom out by clicking **Reset Zoom**.
+    !!!tip
+          The graphs are interactive, and you can click and drag to zoom into specific data/times on each individual graph. You can zoom out by clicking **Reset Zoom**.
 
-       Each dotted blue line represents an event in the test, such as beginning a workload, powering off a node, etc. Clicking the blue dots will provide information about the event.
-       
-       Clicking the **Actions** drop down menu provides options to view the detailed log data, export the test results, and generate a PDF report.
+          Each dotted blue line represents an event in the test, such as beginning a workload, powering off a node, etc. Clicking the blue dots will provide information about the event.
+        
+          Clicking the **Actions** drop down menu provides options to view the detailed log data, export the test results, and generate a PDF report.
 
 ## Working with X-Ray Results
 

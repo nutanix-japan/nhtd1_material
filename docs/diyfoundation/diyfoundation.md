@@ -48,11 +48,18 @@ you will:
 
 Execute the following commands to power off any running VMs on the cluster, stop cluster services, and destroy the existing cluster:
 
+<!-- termynal -->
+
 ```bash
-cluster stop        # Enter 'I agree' when prompted to proceed
+cluster stop        
+>>> Enter 'I agree' when prompted to proceed
 ```
+#
+<!-- termynal -->
+
 ```bash
-cluster destroy     # Enter 'Y' when prompted to proceed
+cluster destroy     
+>>> Enter 'Y' when prompted to proceed
 ```
 
 Once you have made sure that all VMs and services are stopped, you can proceed to the next steps. 
@@ -62,41 +69,44 @@ In this section we will confirm the number of SSDs in your node D. This will det
 
 It is likely that all nodes in HPOC cluster will have similar SSD and HDD combination.
 
-1. Login to the CVM to find out the SSD configuration details
+Login to the CVM to find out the SSD configuration details
 
-    ```bash title="Login to the console of  NodeD CVM"
-    ssh -l nutanix 10.42.xx.32         # password: <check password in RX>
-    ```
-    ``` bash
-    lsscsi 
-    ```
-    ``` { .text .no-copy }
-    # Example output here
-    [0:0:0:0]    disk    ATA      INTEL SSDSC2BX80 0140  /dev/sda  # << SSD 1
-    [0:0:1:0]    disk    ATA      INTEL SSDSC2BX80 0140  /dev/sdb  # << SSD 2
-    [0:0:2:0]    disk    ATA      ST91000640NS     SN03  /dev/sdc 
-    [0:0:3:0]    disk    ATA      ST91000640NS     SN03  /dev/sdd 
-    [0:0:4:0]    disk    ATA      ST91000640NS     SN03  /dev/sde 
-    [0:0:5:0]    disk    ATA      ST91000640NS     SN03  /dev/sdf 
-    [2:0:0:0]    cd/dvd  QEMU     QEMU DVD-ROM     2.5+  /dev/sr0
+```bash title="Login to the console of Node D CVM"
+ssh -l nutanix 10.42.xx.32 # password: <check password in RX>
+```
 
-    # this output shows that your node D has 2 SSDs 
-    ```
+Execute the ``lsscsi`` command
 
-    ``` bash
-    lsscsi
-    ```
-    ``` bash
-    # Example output here
-    [0:0:0:0]    disk    ATA      INTEL SSDSC2BX80 0140  /dev/sda  # << SSD 1
-    [0:0:2:0]    disk    ATA      ST91000640NS     SN03  /dev/sdc 
-    [0:0:3:0]    disk    ATA      ST91000640NS     SN03  /dev/sdd 
-    [0:0:4:0]    disk    ATA      ST91000640NS     SN03  /dev/sde 
-    [0:0:5:0]    disk    ATA      ST91000640NS     SN03  /dev/sdf 
-    [2:0:0:0]    cd/dvd  QEMU     QEMU DVD-ROM     2.5+  /dev/sr0
+<!-- termynal -->
 
-    # this output shows that your node D has 1 SSD
-    ```
+```bash
+> lsscsi
+# Example output here
+[0:0:0:0]    disk    ATA      INTEL SSDSC2BX80 0140  /dev/sda  # << SSD 1
+[0:0:1:0]    disk    ATA      INTEL SSDSC2BX80 0140  /dev/sdb  # << SSD 2
+[0:0:2:0]    disk    ATA      ST91000640NS     SN03  /dev/sdc 
+[0:0:3:0]    disk    ATA      ST91000640NS     SN03  /dev/sdd 
+[0:0:4:0]    disk    ATA      ST91000640NS     SN03  /dev/sde 
+[0:0:5:0]    disk    ATA      ST91000640NS     SN03  /dev/sdf 
+[2:0:0:0]    cd/dvd  QEMU     QEMU DVD-ROM     2.5+  /dev/sr0
+
+> this output shows that your node D has 2 SSDs 
+```
+#
+<!-- termynal -->
+
+```bash
+> lsscsi
+# Example output here
+[0:0:0:0]    disk    ATA      INTEL SSDSC2BX80 0140  /dev/sda  # << SSD 1
+[0:0:2:0]    disk    ATA      ST91000640NS     SN03  /dev/sdc 
+[0:0:3:0]    disk    ATA      ST91000640NS     SN03  /dev/sdd 
+[0:0:4:0]    disk    ATA      ST91000640NS     SN03  /dev/sde 
+[0:0:5:0]    disk    ATA      ST91000640NS     SN03  /dev/sdf 
+[2:0:0:0]    cd/dvd  QEMU     QEMU DVD-ROM     2.5+  /dev/sr0
+
+> this output shows that your node D has 1 SSD
+```
 
 After confirming the number of SSDs choose the appropriate cluster
 formation script in the next section.

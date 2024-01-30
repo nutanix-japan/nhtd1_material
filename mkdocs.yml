@@ -8,7 +8,7 @@ repo_name: nutanix-japan/nhtd1_material
 repo_url: https://github.com/nutanix-japan/nhtd1_material
 
 # Copyright
-copyright: Copyright &copy; 2016 - 2023 Nutanix Enablement Practice
+copyright: Copyright &copy; 2016 - 2024 Nutanix Enablement Practice
 
 
 # Configuration
@@ -76,7 +76,8 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true 
 plugins:
-    - search
+  - termynal
+  - search
 
 # # Style sheeting here
 # extra_css:
