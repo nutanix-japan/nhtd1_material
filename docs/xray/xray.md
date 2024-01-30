@@ -18,35 +18,32 @@ For environments where DHCP is unavailable (or there isn't a sufficiently large 
 
 1. Open a terminal and SSH to Node-D CVM, enter CVM credentials and execute following commands
 
-<!-- termynal -->
-```bash
-$ ssh -l nutanix 10.42.xx.32   
-# Check password in RX
-```
-#
-<!-- termynal -->
+    <!-- termynal -->
+    ```bash
+    $ ssh -l nutanix 10.42.xx.32 # Check password in RX
+    ```
+    <!-- termynal -->
 
 1. Upload the X-Ray Image
 
-```bash
-$ acli image.create X-Ray container=Images image_type=kDiskImage source_url=http://10.42.194.11/images/Xray/4.4.1/xray-4.4.1.qcow2
-```
+    ```bash
+    $ acli image.create X-Ray container=Images image_type=kDiskImage source_url=http://10.42.194.11/images/Xray/4.4.1/xray-4.4.1.qcow2
+    ```
 
-!!!warning
-        Wait until you see that the image upload is complete with a message ``X-Ray: Complete``
+    !!!warning
+            Wait until you see that the image upload is complete with a message ``X-Ray: Complete``
 
 1.  You can confirm presence of X-Ray image by running the following command in the same shell.
 
-<!-- termynal -->
+    <!-- termynal -->
 
-```bash
-$ acli image.list
-# Output here
-Image name  Image type  Image UUID                            
-Foundation  kDiskImage  c970941a-d583-4640-8e03-9b2ca7336d00  
-X-Ray       kDiskImage  ac819fab-3fb9-4e85-99fd-97ca3f925ec8  << here is your X-Ray Image
-```
-#
+    ```bash
+    $ acli image.list
+    # Output here
+    Image name  Image type  Image UUID                            
+    Foundation  kDiskImage  c970941a-d583-4640-8e03-9b2ca7336d00  
+    X-Ray       kDiskImage  ac819fab-3fb9-4e85-99fd-97ca3f925ec8  << here is your X-Ray Image
+    ```
 
 ## Configuring Networks
 
