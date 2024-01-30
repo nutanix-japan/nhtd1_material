@@ -51,13 +51,13 @@ Now we switch to Prism portal of single node cluster D
 1.  Open ``https://<POCxx-D Cluster IP>:9440`` (https://10.42.xx.32:9440) in your browser and log in with the following credentials:
     -   **Username** - admin
     -   **Password** - *check password in RX*
-2.  Then, configue the **Secondary** network on the single node cluster D
-3.  Click **Create Network**. Using the Cluster Details spreadsheet, fill out the following fields and click **Save**:
+1.  Click :fontawesome-solid-gear: > **Network Configuration > Create Subnet**
     -   **Name** - Secondary
     -   **Virtual Switch** - vs0
     -   **VLAN ID** - *HPOC Cluster ID* 1 (e.g. for **PHX-POC079**, VLAN ID would be **791**)
     -   **Enable IP address management** - leave it unselected
-4.  Click on **Save**
+1.  Click on **Save**.
+
 ## Creating X-Ray VM
 
 1.  In **Prism > VM > Table** and click **+ Create VM**.
@@ -97,7 +97,7 @@ Now we switch to Prism portal of single node cluster D
 
 ## Configuring X-Ray
 
-1.  Open ``https://X-RAY-VM-IP`` (E.g: https://10.42.xx.52) in a browser
+1.  Open ``http://X-RAY-VM-IP`` (E.g: http://10.42.xx.52) in a browser
     
     !!!caution
               Make sure to use the X-RAY-VM-IP that you noted down from the previous section
