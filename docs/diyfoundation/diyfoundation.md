@@ -36,15 +36,18 @@ you will:
 
     -   **Username** - nutanix
     -   **Password** - *check password in RX*
+  
+<!-- termynal -->
 
-    ```bash title="Login to the console of  NodeD CVM"
-    ssh -l nutanix 10.42.xx.32         # password: <check password in RX>
-    ```
+```bash
+> ssh -l nutanix 10.42.xx.32   
+# Check password in RX
+```
+#
 
+!!!note
 
-!!! note
-
-     Occassionally, Node D is not deployed with .32 as the last octet. Make sure you check and confirm the correct IP address for Node D in your RX reservation.
+       Occasionally, Node D is not deployed with .32 as the last octet. Make sure you check and confirm the correct IP address for Node D in your RX reservation.
 
 Execute the following commands to power off any running VMs on the cluster, stop cluster services, and destroy the existing cluster:
 
@@ -70,10 +73,6 @@ In this section we will confirm the number of SSDs in your node D. This will det
 It is likely that all nodes in HPOC cluster will have similar SSD and HDD combination.
 
 Login to the CVM to find out the SSD configuration details
-
-```bash title="Login to the console of Node D CVM"
-ssh -l nutanix 10.42.xx.32 # password: <check password in RX>
-```
 
 Execute the ``lsscsi`` command
 
@@ -115,9 +114,12 @@ formation script in the next section.
 
 1.  Remaining in SSH client, access Node-D CVM and execute following commands
 
-    ```bash title="Login to the console of Node D CVM"
-    ssh -l nutanix 10.42.xx.32 # password: <check password in RX>
-    ```
+<!-- termynal -->
+```bash
+> ssh -l nutanix 10.42.xx.32   
+# Check password in RX
+```
+#
 
 2.  Confirm if your hardware nodes have 1 or more SSD. 2 SSDs are required to privide RF2 redundancy factor in a Nutanix cluster.
 

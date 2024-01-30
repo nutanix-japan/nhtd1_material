@@ -76,7 +76,10 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true 
 plugins:
-  - termynal
+  - termynal:
+      prompt_literal_start:
+        - "$"
+        - ">"
   - search
 
 # # Style sheeting here
