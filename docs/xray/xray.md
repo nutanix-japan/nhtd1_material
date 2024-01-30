@@ -18,22 +18,22 @@ For environments where DHCP is unavailable (or there isn't a sufficiently large 
 
 1.  Open a terminal and SSH to Node-D CVM, enter CVM credentials and execute following commands
 
-    ```bash title="Logon to SSH console of CVM"
+    ```bash title="Connect to the Single Node CVM"
     ssh -l nutanix 10.42.xx.32   #<check password in RX>
     ```
 
 2. Upload the X-Ray Image
 
-    ```bash
-    cvm:~$ acli image.create X-Ray container=Images image_type=kDiskImage source_url=http://10.42.194.11/images/Xray/4.1.3/xray-4.1.3.qcow2
+    ```bash title="Run this in Single Node CVM"
+    acli image.create X-Ray container=Images image_type=kDiskImage source_url=http://10.42.194.11/images/Xray/4.4.1/xray-4.4.1.qcow2
     ```
     !!!caution
           Wait until you see that the image upload is complete with a message ``X-Ray: Complete``
 
 2.  You can confirm presence of X-Ray image by running the following command in the same shell
 
-    ```bash
-    cvm:~$ acli image.list
+    ```bash title="Run this in Single Node CVM"
+    acli image.list
     ```
     ``` { .text .no-copy }
     # Output here
@@ -82,7 +82,7 @@ Now we switch to Prism portal of single node cluster D
 2.  Select your **X-Ray** VM and click **Power on**.
 
     !!!info
-           At the time of writing, X-Ray 4.1.3 is the latest available version. The URL for the latest X-Ray OVA & QCOW2 images can be downloaded from the [Nutanix Portal](https://portal.nutanix.com/#/page/static/supportTools).
+           At the time of writing, X-Ray 4.4.1 is the latest available version. The URL for the latest X-Ray OVA & QCOW2 images can be downloaded from the [Nutanix Portal](https://portal.nutanix.com/page/downloads?product=xray).
 
 3.  Once the VM has started, click **Launch Console**
 

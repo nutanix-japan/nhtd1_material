@@ -176,14 +176,14 @@ formation script in the next section.
     -   **Image Type** - Disk
     -   **Storage Container** Images
     -   Select **From URL**
-    -   **Image Source** - ``http://10.42.194.11/images/Foundation/Foundation_VM-5.4.2-disk-0.qcow2``
+    -   **Image Source** - ``http://10.42.194.11/images/Foundation/Foundation_VM-5.5-disk-0.qcow2``
 
     !!!note
-           At the time of writing, Foundation 5.4 is the latest available version. The URL for the latest Foundation VM QCOW2 image can be downloaded from the [Nutanix Portal](https://portal.nutanix.com/#/page/foundation).
+           At the time of writing this lab, Foundation 5.5 is the latest available version. The URL for the latest Foundation VM QCOW2 image can be downloaded from the [Nutanix Portal](https://portal.nutanix.com/#/page/foundation).
 
-           **Unless otherwise directed by support, always use the latest version of Foundation in a field installation.**
+           **Unless otherwise directed by Nutanix Support, always use the latest version of Foundation in a field installation.**
            
-           For the puposes of this lab, the Foundation VM image is stored in a HPOC file server
+           For the purposes of this lab, the Foundation VM image is stored in a HPOC file server
 
 1.  Before creating the VM, we must first create a virtual network to
     assign to the Foundation VM. The network will use the Native VLAN
