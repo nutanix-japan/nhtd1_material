@@ -48,12 +48,12 @@ you will:
 
 Execute the following commands to power off any running VMs on the cluster, stop cluster services, and destroy the existing cluster:
 
-     ```bash
-     cluster stop        # Enter 'I agree' when prompted to proceed
-     ```
-     ```bash
-     cluster destroy     # Enter 'Y' when prompted to proceed
-     ```
+```bash
+cluster stop        # Enter 'I agree' when prompted to proceed
+```
+```bash
+cluster destroy     # Enter 'Y' when prompted to proceed
+```
 
 Once you have made sure that all VMs and services are stopped, you can proceed to the next steps. 
 ## Confirm the Number of SSDs

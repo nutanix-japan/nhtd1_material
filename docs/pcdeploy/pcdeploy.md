@@ -129,9 +129,9 @@ in your browser and log in with the following credentials:
    
     ![](images/7.png)
 
-   The Prism Central widget will update to show **Conntected** .
+    The Prism Central widget will update to show **Conntected** .
    
-![](images/8.png)
+    ![](images/8.png)
 
 You have successully registered Prism Element to be managed your Prism Central.
 
