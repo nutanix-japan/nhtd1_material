@@ -19,12 +19,13 @@ For environments where DHCP is unavailable (or there isn't a sufficiently large 
 Open a terminal and SSH to Node-D CVM, enter CVM credentials and execute following commands
 
 <!-- termynal -->
-```bash title="Login to the console of Node D CVM"
-$ ssh -l nutanix 10.42.xx.32   #<check password in RX>
+```bash
+$ ssh -l nutanix 10.42.xx.32   
+# Check password in RX
 ```
 #
 
-Upload the X-Ray Image from inside the CV
+Upload the X-Ray Image from inside the CVM
 <!-- termynal -->
 
 ```bash

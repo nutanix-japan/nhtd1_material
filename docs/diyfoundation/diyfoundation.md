@@ -14,7 +14,7 @@ self-contained, you will create a single node cluster on which you
 will deploy your Foundation VM. That Foundation instance will be used to
 image and create a cluster from the remaining 3 nodes in the Block.
 
-!!!caution
+!!!warning
           In following steps, you should replace xx part of the IP octet with your assigned cluster ID
 
 ## DIY Environment
@@ -54,14 +54,14 @@ Execute the following commands to power off any running VMs on the cluster, stop
 <!-- termynal -->
 
 ```bash
-$ cluster stop        
+$ cluster stop
 # Enter 'I agree' when prompted to proceed
 ```
 #
 <!-- termynal -->
 
 ```bash
-$ cluster destroy     
+$ cluster destroy
 # Enter 'Y' when prompted to proceed
 ```
 
@@ -264,7 +264,7 @@ $ ncli user reset-password user-name='admin' password=<check password in RX>
 
     ![](images/foundation-vm-ip.png)
 
-    !!!caution
+    !!!warning
               The IP address is received from the Primary network default DHCP pool. Your Foundation VM's IP address will be different.
     
 ## Foundation Node ABC cluster
@@ -284,9 +284,8 @@ To shorten the lab time, we use command line to access foundation VM and downloa
 <!-- termynal -->
 
 ```bash
-$ ssh -l nutanix <Foundation VM IP>  # use default password - ask instructor if you are unaware
-# example
-# ssh -l nutanix 10.42.xx.51     
+$ ssh -l nutanix <Foundation VM IP>  
+# use default password - ask instructor if you are unaware   
 ```
 #
 <!-- termynal -->
