@@ -20,7 +20,7 @@ Open a terminal and SSH to Node-D CVM, enter CVM credentials and execute followi
 
 <!-- termynal -->
 ```bash title="Login to the console of Node D CVM"
-> ssh -l nutanix 10.42.xx.32   #<check password in RX>
+$ ssh -l nutanix 10.42.xx.32   #<check password in RX>
 ```
 #
 
@@ -28,7 +28,7 @@ Upload the X-Ray Image from inside the CV
 <!-- termynal -->
 
 ```bash
-> acli image.create X-Ray container=Images image_type=kDiskImage source_url=http://10.42.194.11/images/Xray/4.4.1/xray-4.4.1.qcow2
+$ acli image.create X-Ray container=Images image_type=kDiskImage source_url=http://10.42.194.11/images/Xray/4.4.1/xray-4.4.1.qcow2
 ```
 
 !!!warning
@@ -40,7 +40,7 @@ You can confirm presence of X-Ray image by running the following command in the 
 <!-- termynal -->
 
 ```bash
-> acli image.list
+$ acli image.list
 # Output here
 Image name  Image type  Image UUID                            
 Foundation  kDiskImage  c970941a-d583-4640-8e03-9b2ca7336d00  

@@ -5,7 +5,7 @@ title: Foundation
 # Overview
 
 !!!info
-        Estimated time to complete: **60 Minutes**
+       Estimated time to complete: **60 Minutes**
 
 Foundation is used to automate the installation of the hypervisor and
 Controller VM on one or more nodes. In this exercise you will practice
@@ -40,7 +40,7 @@ you will:
 <!-- termynal -->
 
 ```bash
-> ssh -l nutanix 10.42.xx.32   
+$ ssh -l nutanix 10.42.xx.32   
 # Check password in RX
 ```
 #
@@ -54,14 +54,14 @@ Execute the following commands to power off any running VMs on the cluster, stop
 <!-- termynal -->
 
 ```bash
-> cluster stop        
+$ cluster stop        
 # Enter 'I agree' when prompted to proceed
 ```
 #
 <!-- termynal -->
 
 ```bash
-> cluster destroy     
+$ cluster destroy     
 # Enter 'Y' when prompted to proceed
 ```
 
@@ -79,7 +79,7 @@ Execute the ``lsscsi`` command
 <!-- termynal -->
 
 ```bash
-> lsscsi
+$ lsscsi
 # Example output here
 [0:0:0:0]    disk    ATA      INTEL SSDSC2BX80 0140  /dev/sda  # << SSD 1
 [0:0:1:0]    disk    ATA      INTEL SSDSC2BX80 0140  /dev/sdb  # << SSD 2
@@ -95,7 +95,7 @@ Execute the ``lsscsi`` command
 <!-- termynal -->
 
 ```bash
-> lsscsi
+$ lsscsi
 # Example output here
 [0:0:0:0]    disk    ATA      INTEL SSDSC2BX80 0140  /dev/sda  # << SSD 1
 [0:0:2:0]    disk    ATA      ST91000640NS     SN03  /dev/sdc 
@@ -116,7 +116,7 @@ formation script in the next section.
 
 <!-- termynal -->
 ```bash
-> ssh -l nutanix 10.42.xx.32   
+$ ssh -l nutanix 10.42.xx.32   
 # Check password in RX
 ```
 #
@@ -157,17 +157,17 @@ formation script in the next section.
 #
 <!-- termynal -->
 ``` bash
-> ncli cluster edit-params new-name=POCxx-D
+$ ncli cluster edit-params new-name=POCxx-D
 ```
 #
 <!-- termynal -->
 ``` bash
-> ncli cluster add-to-name-servers servers=10.42.196.10
+$ ncli cluster add-to-name-servers servers=10.42.196.10
 ```
 #
 <!-- termynal -->
 ``` bash
-> ncli user reset-password user-name='admin' password=<check password in RX> 
+$ ncli user reset-password user-name='admin' password=<check password in RX> 
 ```
 
 ## Install Foundation VM
@@ -284,7 +284,7 @@ To shorten the lab time, we use command line to access foundation VM and downloa
 <!-- termynal -->
 
 ```bash
-> ssh -l nutanix <Foundation VM IP>  # use default password - ask instructor if you are unaware
+$ ssh -l nutanix <Foundation VM IP>  # use default password - ask instructor if you are unaware
 # example
 # ssh -l nutanix 10.42.xx.51     
 ```
@@ -292,9 +292,9 @@ To shorten the lab time, we use command line to access foundation VM and downloa
 <!-- termynal -->
 
 ```bash
-> cd foundation
-> cd nos
-> curl -O http://10.42.194.11/images/AOS/6.7.1/nutanix_installer_package-release-fraser-6.7.1-stable-x86_64.tar.gz
+$ cd foundation
+$ cd nos
+$ curl -O http://10.42.194.11/images/AOS/6.7.1/nutanix_installer_package-release-fraser-6.7.1-stable-x86_64.tar.gz
 ```
 
 !!!Alert
