@@ -30,6 +30,8 @@ you will:
 -   Use Foundation VM to image Nodes A, B, and C and create a 3 node
     cluster
 
+## Destroy the existing cluster
+
 1.  Using an SSH client, connect to the **Node D CVM IP** ``10.42.xx.32`` in your assigned block using the following credentials:
 
     -   **Username** - nutanix
@@ -39,7 +41,12 @@ you will:
     ssh -l nutanix 10.42.xx.32         # password: <check password in RX>
     ```
 
-    Execute the following commands to power off any running VMs on the cluster, stop cluster services, and destroy the existing cluster:
+
+!!! note
+
+     Occassionally, Node D is not deployed with .32 as the last octet. Make sure you check and confirm the correct IP address for Node D in your RX reservation.
+
+Execute the following commands to power off any running VMs on the cluster, stop cluster services, and destroy the existing cluster:
 
      ```bash
      cluster stop        # Enter 'I agree' when prompted to proceed
@@ -153,41 +160,38 @@ formation script in the next section.
     -   **Username** - admin
     -   **Password** - check password in RX
 
-2.  Accept the EULA and Pulse prompts.
+1.  Accept the EULA and Pulse prompts.
 
-3.  In **Prism > Storage > Table > Storage Pool**, select default storage pool and click update, then rename it to *SP01*
+1.  In **Home > Storage > Table > Storage Pool**, right click on the default storage pool and click Update, then rename it to *SP01*
 
-4.  Check if there is a container named *Images*, if not, Click **+ Storage Container** to create a new container named *Images*
+1.  Under **Storage Container**, check if there is a container named *Images*, if not, Click **+ Storage Container** to create a new container named *Images*
 
     ![image](images/image001.png)
 
-5.  Go to configuration :fontawesome-solid-gear: (Settings) page and navigate to **Image Configuration**, click **+Upload Image**
+1.  Go to configuration :fontawesome-solid-gear: (Settings) page and navigate to **Image Configuration**, click **+Upload Image**
 
-6.  Fill out the following fields and click **Save**:
+1.  Fill out the following fields and click **Save**:
 
     -   **Name** - Foundation
     -   **Image Type** - Disk
     -   **Storage Container** Images
     -   Select **From URL**
-    -   **Image Source** - ``http://10.42.194.11/images/Foundation/Foundation_VM-5.2-disk-0.qcow2``
+    -   **Image Source** - ``http://10.42.194.11/images/Foundation/Foundation_VM-5.4.2-disk-0.qcow2``
 
     !!!note
-           At the time of writing, Foundation 5.2 is the latest available version. The URL for the latest Foundation VM QCOW2 image can be downloaded from the [Nutanix Portal](https://portal.nutanix.com/#/page/foundation).
+           At the time of writing, Foundation 5.4 is the latest available version. The URL for the latest Foundation VM QCOW2 image can be downloaded from the [Nutanix Portal](https://portal.nutanix.com/#/page/foundation).
 
            **Unless otherwise directed by support, always use the latest version of Foundation in a field installation.**
            
            For the puposes of this lab, the Foundation VM image is stored in a HPOC file server
 
-
-7.  Go to configuration page and navigate to **Network Config**
-
-8.  Before creating the VM, we must first create a virtual network to
+1.  Before creating the VM, we must first create a virtual network to
     assign to the Foundation VM. The network will use the Native VLAN
     assigned to the physical uplinks for all 4 nodes in the block.
 
-9.  In the Prism Element UI click :fontawesome-solid-gear: > **Network Configuration > Networks > Create Network**
+1.  In the Prism Element UI click :fontawesome-solid-gear: > **Network Configuration > Create Subnet**
 
-10. Fill out the following fields:
+1. Fill out the following fields:
 
     -   **Name** - Primary
     -   **VLAN ID** - 0
@@ -195,11 +199,11 @@ formation script in the next section.
 
     ![](images/image002-network.png)
 
-11. Click on **Save**
+1. Click on **Save**
 
-12. In **Prism > VM > Table** and click **+ Create VM**.
+1. In **Settings > VM > Table** and click **+ Create VM**.
 
-13. Fill out the following fields
+1. Fill out the following fields
 
     -   **Name** - Foundation
     -   **vCPU(s)** - 2
@@ -208,7 +212,7 @@ formation script in the next section.
 
     ![image](images/image003.png)
 
-14. Select **+ Add New Disk**
+1. Select **+ Add New Disk**
 
     -   **Operation** - Clone from Image Service
     -   **Image** - Foundation
@@ -216,9 +220,9 @@ formation script in the next section.
 
     ![image](images/image004.png)
 
-15. Select **Add New NIC**
+1. Select **Add New NIC**
 
-    -   **VLAN Name** - Primary
+    -   **Subnet Name** - Primary
     -   Select **Add**
 
     ![image](images/image005-network-1.png)
@@ -228,7 +232,7 @@ formation script in the next section.
 
     ![image](images/image005-network-2.png)
 
-16. Click on **Save**
+1. Click on **Save**
 
 ## Config Foundation VM
 
@@ -239,7 +243,7 @@ formation script in the next section.
 3.  Once the VM has finished booting, return to Prism element and note
     down the IP address of the Foundation VM.
 
-4.  Prism Element > **VM** > **Table** > **Foundation VM** > **NICs**
+4.  Prism Element > **VM** > **Table** > **Foundation VM** > **VM NICs**
 
     ![](images/foundation-vm-ip.png)
 
@@ -257,7 +261,7 @@ If downloading the AOS package within the Foundation VM, the ``.tar.gz`` package
 
 To shorten the lab time, we use command line to access foundation VM and download NOS binary to designated folder in it.
 
-1.  Open a terminal in your desktop computer (Putty or Mac Terminal) and ssh to **Foundation VM** through foundation IP ``10.42.xx.45``
+1.  Open a terminal in your desktop computer (Putty or Mac Terminal) and ssh to **Foundation VM** through foundation IP ``10.42.xx.45``. The default password for the Foundation VM can be found on step 7 of the [Field Installation Guide](https://portal.nutanix.com/page/documents/details?targetId=Field-Installation-Guide-v5_5:fie-foundation-vm-install-on-workstation-t.html).
 
     ```bash title="Login to the console of Foundation VM"
     ssh -l nutanix <Foundation VM IP>  # use default password - ask instructor if you are unaware
@@ -267,17 +271,17 @@ To shorten the lab time, we use command line to access foundation VM and downloa
     ```bash
     cd foundation
     cd nos
-    curl -O http://10.42.194.11/images/AOS/5.20.3/nutanix_installer_package-release-euphrates-5.20.3-stable-x86_64.tar
+    curl -O http://10.42.194.11/images/AOS/6.7.1/nutanix_installer_package-release-fraser-6.7.1-stable-x86_64.tar.gz
     ```
 
     !!!Alert
-           When you see 100% finished status, AOS 5.20.3 package has been downloaded to ``~/foundation/nos`` folder.
+           When you see 100% finished status, AOS 6.7.1 package has been downloaded to ``~/foundation/nos`` folder.
 
-2.  From you desktop computer, open Google Chrome browser and navigate to Foundation VM's IP
+1.  From you desktop computer, open Google Chrome browser and navigate to Foundation VM's IP
 
-3.  Access Foundation UI via any browser at ``http://<Foundation VM IP>``
+1.  Access Foundation UI via any browser at ``http://<Foundation VM IP>``
 
-4.  Fill the following fields:
+1.  Fill the following fields:
 
     -   **Select your hardware platform**: Autodetect
     -   **Netmask of Every Host and CVM** - 255.255.255.128
@@ -289,21 +293,16 @@ To shorten the lab time, we use command line to access foundation VM and downloa
 
     ![image](images/image014.png)
 
-5.  In new foundation page, Tools menu choose **Remove Unselected Rows** to clear all auto discovered nodes
-
-    ![image](images/remove-nodes.png)
-
-6.  Click **Add nodes manually**
+1.  On the **Nodes** page, click **Add IPMI Nodes Manually**
 
     ![image](images/image0141.png)
 
-7.  Fill in block information, fill in the following information:
+1.  Fill in block information, fill in the following information:
 
-    -   **Number of blocks** - 1
     -   **Number of nodes** - 3
-    -   **How should these nodes be reached?** - choose **I will provide the IPMI's MACs**
+    -   **How should these nodes be reached?** - choose **I will provide the IPMIs' MAC addresses**
 
-8.  Click **Add**
+1.  Click **Add**
 
     ![image](images/image104.png)
 
@@ -334,19 +333,21 @@ To shorten the lab time, we use command line to access foundation VM and downloa
            # repeat for nodes B and C for unique IPMI MAC addresses
            ```
 
-9.  Access Node A IPMI through IP 10.42.xx.33 with ADMIN/ADMIN
+1.  Access Node A IPMI through IP 10.42.xx.33 with ADMIN/ADMIN
 
     ![image](images/image101.png)
 
     ![image](images/image102.png)
 
-10. Record your NODE A/B/C BMC MAC address (in above example , it is **ac:1f:6b:1e:95:eb** )
+1. Record your NODE A/B/C BMC MAC address (in above example , it is **ac:1f:6b:1e:95:eb** )
 
     Doing the same with your other 2 nodes B/C, access Node B and C IPMI through IP 10.42.xx.34/35 with ADMIN/ADMIN, record all 3 BMC MAC addresses.
 
-11. Click **Tools** and select **Range Autofill** from the drop down list
+1. Update the Node column to show "A, B, C", rather than A, A, A.
 
-12. Replacing the octet(s) that correspond to your HPOC network, fill out the **top row** fields with the following details:
+1. Click **Tools** and select **Range Autofill** from the drop down list
+
+1. Replacing the octet(s) that correspond to your HPOC network, fill out the **top row** fields with the following details:
 
     -   **IPMI MAC** - the three your just recorded down
     -   **IPMI IP** - 10.42.xx.
@@ -356,21 +357,27 @@ To shorten the lab time, we use command line to access foundation VM and downloa
 
     ![image](images/image105.png)
 
-13. Click **Next**
+1. Click **Next**
 
-14. In the **Cluster** page, fill the following details:
+1. In the **Cluster** page, fill the following details:
 
     -   **Cluster Name** - POCxx-ABC
     -   **Timezone of Every Hypervisor and CVM** - America/Phoenix
     -   **Cluster Redundancy Factor** - RF2
     -   **Cluster Virtual IP** - 10.42.xx.37
-    -   **NTP Servers of Every Hypervisor and CVM** - 0.pool.ntp.org,1.pool.ntp.org,2.pool.ntp.org,3.pool.ntp.org
+    -   **NTP Servers of Every Hypervisor and CVM**:
+
+            0.pool.ntp.org
+            1.pool.ntp.org
+            2.pool.ntp.org
+            3.pool.ntp.org
+
     -   **DNS Servers of Every Hypervisor and CVM** - 10.42.196.10
     -   **vRAM Allocation for Every CVM, in Gigabytes** - 32
 
     ![image](images/foundation-cluster-config.png)
 
-15. Click **Next**
+1. Click **Next**
 
     -   **Select an AOS installer** - Select your uploaded (through
         command line in previous steps)
@@ -379,9 +386,9 @@ To shorten the lab time, we use command line to access foundation VM and downloa
 
     ![image](images/image106.png)
 
-16. Click **Next**
+1. Click **Next**
 
-17. Fill out the following fields and click **Next**:
+1. Fill out the following fields and click **Next**:
 
     -   **Select a hypervisor installer** - AHV, AHV installer bundled inside the AOS installer
 
@@ -390,43 +397,45 @@ To shorten the lab time, we use command line to access foundation VM and downloa
     !!!tip
           Every AOS release contains a version of AHV bundle with that release.
     
-18. Click **Next**
+1. Click **Next**
 
-19. Enter the existing IPMI credentials as **ADMIN** and **ADMIN** for all three nodes. Note that this will be different in the field.
+1. Enter the existing IPMI credentials as **ADMIN** and **ADMIN** for all three nodes. Note that this will be different in the field.
 
     ![image](images/image021.png)
 
-20. Click **Start**
+1. Click **Start**
 
-21. Confirm that the installer will be active by clicking on **Won't Sleep**
+1. Confirm that the installer will be active by clicking on **Won't Sleep**
 
     ![image](images/image021-confirm.png)
 
-22. In the **Warning of Data Loss Possibility** window, click on **Ignore and Re-image**
+1. In the **Warning of Data Loss Possibility** window, click on **Ignore and Re-image**
 
     ![image](images/image021-ignore-warning.png)
 
     Foundation will run a couple of tests to make sure all the configuration details you have provided are correct and then direct you the installation progress page.
 
-23. Click the **Log** link to view the realtime log output from your node.
+1. Click the **Log** link to view the realtime log output from your node.
 
     ![image](images/image022.png)
 
     When all CVMs are ready, Foundation initiates the cluster creation process.
 
-24. Monitor the foundation process until completion
+1. Monitor the foundation process until completion
 
     ![image](images/image023.png)
 
-25. Once Foundation finishes successully, either click on **Click here**
+1. Once Foundation finishes successully, either click on **Click here**
     link as shown above or open ``https://<Cluster Virtual IP>:9440`` (10.42.xx.37)in your browser
 
-26. Log in with the following credentials:
+1. Log in with the following credentials:
 
     -   **Username** - admin
-    -   **Change the Password** - *use the same password in RX*
+    -   **Password** - Prism Central default password (If you are not familair with this password, it can be found within the [Prism Element Web Console Guide](https://portal.nutanix.com/page/documents/details?targetId=Web-Console-Guide-Prism-v6_7:wc-login-wc-t.html), step 5.)
 
-27. Once the password is changed, you can login to Prism Element
+1. When prompted, **Change the Password**  to use the same password from RX.
+
+1. Once the password is changed, you can login to Prism Element.
 
     ![image](images/image024.png)
 
