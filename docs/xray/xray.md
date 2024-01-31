@@ -278,7 +278,7 @@ resulting in a much faster time to complete ingesting the 1TB of data.
 
 1.  To export analysis results for use in proposal documents, etc., 
 
-2.  Select the results you need in **All Results**page and click on
+2.  Select the results you need in **All Results** page and click on
     **Create report**.
 
     ![](images/allresults.png)
