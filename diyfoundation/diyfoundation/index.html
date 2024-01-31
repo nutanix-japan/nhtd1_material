@@ -1,0 +1,1004 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Lakshmi Balaramane">
+      
+      
+        <link rel="canonical" href="https://nutanix-japan.github.io/nhtd1_material/diyfoundation/diyfoundation/">
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../../pcdeploy/pcdeploy/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.6">
+    
+    
+      
+        <title>Foundation - NHT</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1 7.775V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.752 1.752 0 0 1 1 7.775Zm1.5 0c0 .066.026.13.073.177l6.25 6.25a.25.25 0 0 0 .354 0l5.025-5.025a.25.25 0 0 0 0-.354l-6.25-6.25a.25.25 0 0 0-.177-.073H2.75a.25.25 0 0 0-.25.25ZM6 5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.5 1.75v11.5c0 .138.112.25.25.25h3.17a.75.75 0 0 1 0 1.5H2.75A1.75 1.75 0 0 1 1 13.25V1.75C1 .784 1.784 0 2.75 0h8.5C12.216 0 13 .784 13 1.75v7.736a.75.75 0 0 1-1.5 0V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25Zm13.274 9.537v-.001l-4.557 4.45a.75.75 0 0 1-1.055-.008l-1.943-1.95a.75.75 0 0 1 1.062-1.058l1.419 1.425 4.026-3.932a.75.75 0 1 1 1.048 1.074ZM4.75 4h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM4 7.75A.75.75 0 0 1 4.75 7h2a.75.75 0 0 1 0 1.5h-2A.75.75 0 0 1 4 7.75Z"/></svg>');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.499.75a.75.75 0 0 1 1.5 0v.996C5.9 2.903 6.793 3.65 7.662 4.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873 10.794-.045 12.622.26 14.408.558 16 1.94 16 4.25c0 1.278-.954 2.575-2.44 2.734l.146.508.065.22c.203.701.412 1.455.476 2.226.142 1.707-.4 3.03-1.487 3.898C11.714 14.671 10.27 15 8.75 15h-6a.75.75 0 0 1 0-1.5h1.376a4.484 4.484 0 0 1-.563-1.191 3.835 3.835 0 0 1-.05-2.063 4.647 4.647 0 0 1-2.025-.293.75.75 0 0 1 .525-1.406c1.357.507 2.376-.006 2.698-.318l.009-.01a.747.747 0 0 1 1.06 0 .748.748 0 0 1-.012 1.074c-.912.92-.992 1.835-.768 2.586.221.74.745 1.337 1.196 1.621H8.75c1.343 0 2.398-.296 3.074-.836.635-.507 1.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.425 2.425 0 0 1-.507-.441 3.075 3.075 0 0 1-.633-1.248.75.75 0 0 1 1.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738 0 1.25-.615 1.25-1.25 0-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706 1.345-.46.92-.27 1.774.019 3.062l.042.19a.884.884 0 0 1 .01.05c.348.443.666.949.94 1.553a.75.75 0 1 1-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768L6.7 5.527c-.814-.68-1.75-1.462-2.692-2.619a3.737 3.737 0 0 0-1.023.88c-.406.495-.663 1.036-.722 1.508.116.122.306.21.591.239.388.038.797-.06 1.032-.19a.75.75 0 0 1 .728 1.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75 5.677V5.5c0-.984.48-1.94 1.077-2.664.46-.559 1.05-1.055 1.673-1.353V.75Z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.92 6.085h.001a.749.749 0 1 1-1.342-.67c.169-.339.436-.701.849-.977C6.845 4.16 7.369 4 8 4a2.756 2.756 0 0 1 1.637.525c.503.377.863.965.863 1.725 0 .448-.115.83-.329 1.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6.24 6.24 0 0 0-.26.16.952.952 0 0 0-.276.245.75.75 0 0 1-1.248-.832c.184-.264.42-.489.692-.661.103-.067.207-.132.313-.195l.007-.004c.1-.061.182-.11.258-.161a.969.969 0 0 0 .277-.245C8.96 6.514 9 6.427 9 6.25a.612.612 0 0 0-.262-.525A1.27 1.27 0 0 0 8 5.5c-.369 0-.595.09-.74.187a1.01 1.01 0 0 0-.34.398ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.344 2.343h-.001a8 8 0 0 1 11.314 11.314A8.002 8.002 0 0 1 .234 10.089a8 8 0 0 1 2.11-7.746Zm1.06 10.253a6.5 6.5 0 1 0 9.108-9.275 6.5 6.5 0 0 0-9.108 9.275ZM6.03 4.97 8 6.94l1.97-1.97a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l1.97 1.97a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-1.97 1.97a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L6.94 8 4.97 6.03a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018Z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M9.504.43a1.516 1.516 0 0 1 2.437 1.713L10.415 5.5h2.123c1.57 0 2.346 1.909 1.22 3.004l-7.34 7.142a1.249 1.249 0 0 1-.871.354h-.302a1.25 1.25 0 0 1-1.157-1.723L5.633 10.5H3.462c-1.57 0-2.346-1.909-1.22-3.004L9.503.429Zm1.047 1.074L3.286 8.571A.25.25 0 0 0 3.462 9H6.75a.75.75 0 0 1 .694 1.034l-1.713 4.188 6.982-6.793A.25.25 0 0 0 12.538 7H9.25a.75.75 0 0 1-.683-1.06l2.008-4.418.003-.006a.036.036 0 0 0-.004-.009l-.006-.006-.008-.001c-.003 0-.006.002-.009.004Z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.72.22a.75.75 0 0 1 1.06 0l1 .999a3.488 3.488 0 0 1 2.441 0l.999-1a.748.748 0 0 1 1.265.332.75.75 0 0 1-.205.729l-.775.776c.616.63.995 1.493.995 2.444v.327c0 .1-.009.197-.025.292.408.14.764.392 1.029.722l1.968-.787a.75.75 0 0 1 .556 1.392L13 7.258V9h2.25a.75.75 0 0 1 0 1.5H13v.5c0 .409-.049.806-.141 1.186l2.17.868a.75.75 0 0 1-.557 1.392l-2.184-.873A4.997 4.997 0 0 1 8 16a4.997 4.997 0 0 1-4.288-2.427l-2.183.873a.75.75 0 0 1-.558-1.392l2.17-.868A5.036 5.036 0 0 1 3 11v-.5H.75a.75.75 0 0 1 0-1.5H3V7.258L.971 6.446a.75.75 0 0 1 .558-1.392l1.967.787c.265-.33.62-.583 1.03-.722a1.677 1.677 0 0 1-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72 1.28a.75.75 0 0 1 0-1.06Zm.53 6.28a.75.75 0 0 0-.75.75V11a3.5 3.5 0 1 0 7 0V7.25a.75.75 0 0 0-.75-.75ZM6.173 5h3.654A.172.172 0 0 0 10 4.827V4.5a2 2 0 1 0-4 0v.327c0 .096.077.173.173.173Z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M5 5.782V2.5h-.25a.75.75 0 0 1 0-1.5h6.5a.75.75 0 0 1 0 1.5H11v3.282l3.666 5.76C15.619 13.04 14.543 15 12.767 15H3.233c-1.776 0-2.852-1.96-1.899-3.458Zm-2.4 6.565a.75.75 0 0 0 .633 1.153h9.534a.75.75 0 0 0 .633-1.153L12.225 10.5h-8.45ZM9.5 2.5h-3V6c0 .143-.04.283-.117.403L4.73 9h6.54L9.617 6.403A.746.746 0 0 1 9.5 6Z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1.75 2.5h10.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Zm4 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5Zm0 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5ZM2.5 7.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 1.5 0Z"/></svg>');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../termynal.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="NHT" class="md-header__button md-logo" aria-label="NHT" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NHT
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Foundation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/nutanix-japan/nhtd1_material" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    nutanix-japan/nhtd1_material
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="NHT" class="md-nav__button md-logo" aria-label="NHT" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    NHT
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/nutanix-japan/nhtd1_material" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    nutanix-japan/nhtd1_material
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Foundation
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Foundation
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#diy-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      DIY Environment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#destroy-the-existing-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Destroy the existing cluster
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pcdeploy/pcdeploy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prism Central Deployment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../xray/xray/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    X-Ray
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#diy-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      DIY Environment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#destroy-the-existing-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Destroy the existing cluster
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="overview">Overview</h1>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Estimated time to complete: <strong>60 Minutes</strong></p>
+</div>
+<p>Foundation is used to automate the installation of the hypervisor and
+Controller VM on one or more nodes. In this exercise you will practice
+imaging a physical cluster with Foundation. In order to keep the lab
+self-contained, you will create a single node cluster on which you
+will deploy your Foundation VM. That Foundation instance will be used to
+image and create a cluster from the remaining 3 nodes in the Block.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<div class="highlight"><pre><span></span><code>  In following steps, you should replace xx part of the IP octet with your assigned cluster ID
+</code></pre></div>
+</div>
+<h2 id="diy-environment">DIY Environment</h2>
+<p>A Hosted POC reservation provides a fully imaged cluster consisting of 4
+nodes. To keep the lab self-contained within a single, physical block,
+you will:</p>
+<ul>
+<li>Destroy the existing cluster</li>
+<li>Confirm the number of SSDs</li>
+<li>Create a single node cluster using Node D</li>
+<li>Install the Foundation VM on Node D</li>
+<li>Use Foundation VM to image Nodes A, B, and C and create a 3 node
+    cluster</li>
+</ul>
+<h2 id="destroy-the-existing-cluster">Destroy the existing cluster</h2>
+<ol>
+<li>
+<p>Using an SSH client, connect to the <strong>Node D CVM IP</strong> <code>10.42.xx.32</code> in your assigned block using the following credentials:</p>
+<ul>
+<li><strong>Username</strong> - nutanix</li>
+<li><strong>Password</strong> - <em>check password in RX</em></li>
+</ul>
+</li>
+</ol>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">ssh -l nutanix 10.42.xx.32   </span><span class="termynal-comment" data-ty># Check password in RX</span><span data-ty></span></div>
+
+<h1 id="_1"></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Occasionally, Node D is not deployed with .32 as the last octet. Make sure you check and confirm the correct IP address for Node D in your RX reservation.</p>
+</div>
+<p>Execute the following commands to power off any running VMs on the cluster, stop cluster services, and destroy the existing cluster:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">cluster stop</span><span class="termynal-comment" data-ty># Enter 'I agree' when prompted to proceed</span><span data-ty="progress"></span><span data-ty="input" data-ty-prompt="&gt;">cluster stopped</span><span data-ty></span></div>
+
+<h1 id="_2"></h1>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">cluster destroy</span><span class="termynal-comment" data-ty># Enter 'Y' when prompted to proceed</span><span data-ty="progress"></span><span data-ty="input" data-ty-prompt="&gt;">cluster destroyed</span><span data-ty></span></div>
+
+<p>Once you have made sure that all VMs and services are stopped, you can proceed to the next steps. </p>
+<h2 id="confirm-the-number-of-ssds">Confirm the Number of SSDs</h2>
+<p>In this section we will confirm the number of SSDs in your node D. This will determine which command we will use in the next section.</p>
+<p>It is likely that all nodes in HPOC cluster will have similar SSD and HDD combination.</p>
+<p>Login to the CVM to find out the SSD configuration details</p>
+<p>Execute the <code>lsscsi</code> command</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">lsscsi</span><span class="termynal-comment" data-ty># Example output here</span><span data-ty>[0:0:0:0]    disk    ATA      INTEL SSDSC2BX80 0140  /dev/sda  # &lt;&lt; SSD 1<br>[0:0:1:0]    disk    ATA      INTEL SSDSC2BX80 0140  /dev/sdb  # &lt;&lt; SSD 2<br>[0:0:2:0]    disk    ATA      ST91000640NS     SN03  /dev/sdc <br>[0:0:3:0]    disk    ATA      ST91000640NS     SN03  /dev/sdd <br>[0:0:4:0]    disk    ATA      ST91000640NS     SN03  /dev/sde <br>[0:0:5:0]    disk    ATA      ST91000640NS     SN03  /dev/sdf <br>[2:0:0:0]    cd/dvd  QEMU     QEMU DVD-ROM     2.5+  /dev/sr0<br></span><span data-ty="input" data-ty-prompt="&gt;">this output shows that your node D has 2 SSDs </span><span data-ty></span></div>
+
+<h1 id="_3"></h1>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">lsscsi</span><span class="termynal-comment" data-ty># Example output here</span><span data-ty>[0:0:0:0]    disk    ATA      INTEL SSDSC2BX80 0140  /dev/sda  # &lt;&lt; SSD 1<br>[0:0:2:0]    disk    ATA      ST91000640NS     SN03  /dev/sdc <br>[0:0:3:0]    disk    ATA      ST91000640NS     SN03  /dev/sdd <br>[0:0:4:0]    disk    ATA      ST91000640NS     SN03  /dev/sde <br>[0:0:5:0]    disk    ATA      ST91000640NS     SN03  /dev/sdf <br>[2:0:0:0]    cd/dvd  QEMU     QEMU DVD-ROM     2.5+  /dev/sr0<br></span><span data-ty="input" data-ty-prompt="&gt;">this output shows that your node D has 1 SSD</span><span data-ty></span></div>
+
+<p>After confirming the number of SSDs choose the appropriate cluster
+formation script in the next section.</p>
+<h2 id="create-node-d-cluster">Create Node D Cluster</h2>
+<ol>
+<li>Remaining in SSH client, access Node-D CVM and execute following commands</li>
+</ol>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">ssh -l nutanix 10.42.xx.32   </span><span class="termynal-comment" data-ty># Check password in RX</span><span data-ty></span></div>
+
+<h1 id="_4"></h1>
+<ol>
+<li>
+<p>Confirm if your hardware nodes have 1 or more SSD. 2 SSDs are required to privide RF2 redundancy factor in a Nutanix cluster.</p>
+<p>For the purpose of our lab, since we are creating 1 node cluster, we are good to have RF1 as a redundancy factor.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">1 SSD Node</label><label for="__tabbed_1_2">2 SSDs Node</label><label for="__tabbed_1_3">All SSDs Node</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cluster<span class="w"> </span>-s<span class="w"> </span><span class="m">10</span>.42.xx.32<span class="w"> </span>--redundancy_factor<span class="o">=</span><span class="m">1</span><span class="w"> </span>create<span class="w"> </span><span class="c1"># Enter &#39;Y&#39; when prompted to proceed</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cluster<span class="w"> </span>-s<span class="w"> </span><span class="m">10</span>.42.xx.32<span class="w"> </span>create<span class="w"> </span><span class="c1"># Enter &#39;Y&#39; when prompted to proceed</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>cluster<span class="w"> </span>-s<span class="w"> </span><span class="m">10</span>.42.xx.32<span class="w"> </span>create<span class="w"> </span><span class="c1"># Enter &#39;Y&#39; when prompted to proceed</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>After the single node cluster is formed, run the following commands
+    to configure it</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The above command will create a <code>cluster</code> from a single node using RF1, offering no redundancy to recover from hardware failure.</p>
+<p>This configuration is being used for non-production, instructional purposes and should <strong>NEVER</strong> be used for a customer deployment (unless the hosted application stores two copies of the same data
+   e.g. Splunk). This should be agreed with the customer.</p>
+<p>After the <code>cluster</code> is created, Prism will reflect Critical Health status due to lack of redundancy.</p>
+</div>
+</li>
+</ol>
+<h1 id="_5"></h1>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">ncli cluster edit-params new-name=POCxx-D</span><span data-ty></span></div>
+
+<h1 id="_6"></h1>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">ncli cluster add-to-name-servers servers=10.42.196.10</span><span data-ty></span></div>
+
+<h1 id="_7"></h1>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">ncli user reset-password user-name='admin' password=&lt;check password in RX&gt; </span><span data-ty></span></div>
+
+<h2 id="install-foundation-vm">Install Foundation VM</h2>
+<ol>
+<li>
+<p>Open <code>https://&lt;Node D CVM IP:9440</code> (https://10.42.xx.32:9440) in your browser and log in with the following credentials:</p>
+<ul>
+<li><strong>Username</strong> - admin</li>
+<li><strong>Password</strong> - check password in RX</li>
+</ul>
+</li>
+<li>
+<p>Accept the EULA and Pulse prompts.</p>
+</li>
+<li>
+<p>In <strong>Home &gt; Storage &gt; Table &gt; Storage Pool</strong>, right click on the default storage pool and click Update, then rename it to <em>SP01</em></p>
+</li>
+<li>
+<p>Under <strong>Storage Container</strong>, check if there is a container named <em>Images</em>, if not, Click <strong>+ Storage Container</strong> to create a new container named <em>Images</em></p>
+<p><img alt="image" src="../images/image001.png" /></p>
+</li>
+<li>
+<p>Go to configuration <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M495.9 166.6c3.2 8.7.5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4l-55.6 17.8c-8.8 2.8-18.6.3-24.5-6.8-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4c-1.1-8.4-1.7-16.9-1.7-25.5s.6-17.1 1.7-25.4l-43.3-39.4c-6.9-6.2-9.6-15.9-6.4-24.6 4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2 5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8 8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"/></svg></span> (Settings) page and navigate to <strong>Image Configuration</strong>, click <strong>+Upload Image</strong></p>
+</li>
+<li>
+<p>Fill out the following fields and click <strong>Save</strong>:</p>
+<ul>
+<li><strong>Name</strong> - Foundation</li>
+<li><strong>Image Type</strong> - Disk</li>
+<li><strong>Storage Container</strong> Images</li>
+<li>Select <strong>From URL</strong></li>
+<li><strong>Image Source</strong> - <code>http://10.42.194.11/images/Foundation/Foundation_VM-5.5-disk-0.qcow2</code></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>At the time of writing this lab, Foundation 5.5 is the latest available version. The URL for the latest Foundation VM QCOW2 image can be downloaded from the <a href="https://portal.nutanix.com/#/page/foundation">Nutanix Portal</a>.</p>
+<p><strong>Unless otherwise directed by Nutanix Support, always use the latest version of Foundation in a field installation.</strong></p>
+<p>For the purposes of this lab, the Foundation VM image is stored in a HPOC file server</p>
+</div>
+</li>
+<li>
+<p>Before creating the VM, we must first create a virtual network to
+    assign to the Foundation VM. The network will use the Native VLAN
+    assigned to the physical uplinks for all 4 nodes in the block.</p>
+</li>
+<li>
+<p>In the Prism Element UI click <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M495.9 166.6c3.2 8.7.5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4l-55.6 17.8c-8.8 2.8-18.6.3-24.5-6.8-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4c-1.1-8.4-1.7-16.9-1.7-25.5s.6-17.1 1.7-25.4l-43.3-39.4c-6.9-6.2-9.6-15.9-6.4-24.6 4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2 5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8 8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"/></svg></span> &gt; <strong>Network Configuration &gt; Create Subnet</strong></p>
+</li>
+<li>
+<p>Fill out the following fields:</p>
+<ul>
+<li><strong>Name</strong> - Primary</li>
+<li><strong>VLAN ID</strong> - 0</li>
+<li>Enable IP address management - leave it unselected</li>
+</ul>
+<p><img alt="" src="../images/image002-network.png" /></p>
+</li>
+<li>
+<p>Click on <strong>Save</strong></p>
+</li>
+<li>
+<p>In <strong>Settings &gt; VM &gt; Table</strong> and click <strong>+ Create VM</strong>.</p>
+</li>
+<li>
+<p>Fill out the following fields</p>
+<ul>
+<li><strong>Name</strong> - Foundation</li>
+<li><strong>vCPU(s)</strong> - 2</li>
+<li><strong>Number of Cores per vCPU</strong> - 1</li>
+<li><strong>Memory</strong> - 8 Gi</li>
+</ul>
+<p><img alt="image" src="../images/image003.png" /></p>
+</li>
+<li>
+<p>Select <strong>+ Add New Disk</strong></p>
+<ul>
+<li><strong>Operation</strong> - Clone from Image Service</li>
+<li><strong>Image</strong> - Foundation</li>
+<li>Select <strong>Add</strong></li>
+</ul>
+<p><img alt="image" src="../images/image004.png" /></p>
+</li>
+<li>
+<p>Select <strong>Add New NIC</strong></p>
+<ul>
+<li><strong>Subnet Name</strong> - Primary</li>
+<li>Select <strong>Add</strong></li>
+</ul>
+<p><img alt="image" src="../images/image005-network-1.png" /></p>
+<p>Once NIC is added, you should see the NIC configuration in the VM
+create window as shown here</p>
+<p><img alt="image" src="../images/image005-network-2.png" /></p>
+</li>
+<li>
+<p>Click on <strong>Save</strong></p>
+</li>
+</ol>
+<h2 id="config-foundation-vm">Config Foundation VM</h2>
+<ol>
+<li>
+<p>Select your <strong>Foundation</strong> VM and click <strong>Power on</strong>.</p>
+</li>
+<li>
+<p>Once the VM has started, click <strong>Launch Console</strong>.</p>
+</li>
+<li>
+<p>Once the VM has finished booting, return to Prism element and note
+    down the IP address of the Foundation VM.</p>
+</li>
+<li>
+<p>Prism Element &gt; <strong>VM</strong> &gt; <strong>Table</strong> &gt; <strong>Foundation VM</strong> &gt; <strong>VM NICs</strong></p>
+<p><img alt="" src="../images/foundation-vm-ip.png" /></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<div class="highlight"><pre><span></span><code>  The IP address is received from the Primary network default DHCP pool. Your Foundation VM&#39;s IP address will be different.
+</code></pre></div>
+</div>
+</li>
+</ol>
+<h2 id="foundation-node-abc-cluster">Foundation Node ABC cluster</h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We will do this section of the lab from your desktop (Windows or Mac) computer. This is the fastest way as remote consoles will be slow.</p>
+</div>
+<p>By default, Foundation does not have any AOS or hypervisor images. You can download your desired AOS package from the <a href="https://portal.nutanix.com/#/page/releases/nosDetails">Nutanix Portal</a>.</p>
+<p>If downloading the AOS package within the Foundation VM, the <code>.tar.gz</code> package can also be moved to <code>~/foundation/nos</code> rather than uploaded to Foundation through the web UI.</p>
+<p>To shorten the lab time, we use command line to access foundation VM and download NOS binary to designated folder in it.</p>
+<ol>
+<li>Open a terminal in your desktop computer (Putty or Mac Terminal) and ssh to <strong>Foundation VM</strong> through foundation IP <code>10.42.xx.45</code>. The default password for the Foundation VM can be found on step 7 of the <a href="https://portal.nutanix.com/page/documents/details?targetId=Field-Installation-Guide-v5_5:fie-foundation-vm-install-on-workstation-t.html">Field Installation Guide</a>.</li>
+</ol>
+<h1 id="_8"></h1>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">ssh -l nutanix &lt;Foundation VM IP&gt;  </span><span class="termynal-comment" data-ty># use default password - ask instructor if you are unaware   </span><span data-ty></span></div>
+
+<h1 id="_9"></h1>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">cd foundation</span><span data-ty="input" data-ty-prompt="$">cd nos</span><span data-ty="input" data-ty-prompt="$">curl -O http://10.42.194.11/images/AOS/6.7.1/nutanix_installer_package-release-fraser-6.7.1-stable-x86_64.tar.gz</span><span data-ty></span></div>
+
+<div class="admonition alert">
+<p class="admonition-title">Alert</p>
+<div class="highlight"><pre><span></span><code>When you see 100% finished status, AOS 6.7.1 package has been downloaded to ``~/foundation/nos`` folder.
+</code></pre></div>
+</div>
+<ol>
+<li>
+<p>From you desktop computer, open Google Chrome browser and navigate to Foundation VM's IP</p>
+</li>
+<li>
+<p>Access Foundation UI via any browser at <code>http://&lt;Foundation VM IP&gt;</code></p>
+</li>
+<li>
+<p>Fill the following fields:</p>
+<ul>
+<li><strong>Select your hardware platform</strong>: Autodetect</li>
+<li><strong>Netmask of Every Host and CVM</strong> - 255.255.255.128</li>
+<li><strong>Gateway of Every Host and CVM</strong> - 10.42.xx.1</li>
+<li><strong>Gateway of Every IPMI</strong> - 10.42.xx.1</li>
+<li><strong>Netmask of Every IPMI</strong> - 255.255.255.128</li>
+<li>Under <strong>Double-check this installer's networking step</strong></li>
+<li><strong>Skip this Validation</strong> - selected</li>
+</ul>
+<p><img alt="image" src="../images/image014.png" /></p>
+</li>
+<li>
+<p>On the <strong>Nodes</strong> page, click <strong>Add IPMI Nodes Manually</strong></p>
+<p><img alt="image" src="../images/image0141.png" /></p>
+</li>
+<li>
+<p>Fill in block information, fill in the following information:</p>
+<ul>
+<li><strong>Number of nodes</strong> - 3</li>
+<li><strong>How should these nodes be reached?</strong> - choose <strong>I will provide the IPMIs' MAC addresses</strong></li>
+</ul>
+</li>
+<li>
+<p>Click <strong>Add</strong></p>
+<p><img alt="image" src="../images/image104.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Foundation will automatically discover any hosts in the same IPv6 Link Local broadcast domain that is not already part of a cluster. </p>
+<p>When transferring POC assets in the field, it's not uncommon to receive a cluster that wasn't properly destroyed at the conclusion of the previous POC. In that case, the nodes are already part of existing clusters and will not be discovered. </p>
+<p>In this lab, we choose manually specify the MAC address instead in order to practice as the real world.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>There are at least 2 methods to get MAC address remotely.</p>
+<p>Method.1: Identify IPMI MAC Address (BMC MAC address) of Nodes (A, B, and C) by accessing IPMI IP in a browser for each node </p>
+<p>Method.2 Identify IPMI MAC Address of Nodes (A, B, C) by logging to the AHV hosts with User: root, Password: <em>default</em> for each node and using the following commands: </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ssh<span class="w"> </span>-l<span class="w"> </span>root<span class="w"> </span>&lt;IP<span class="w"> </span>address<span class="w"> </span>of<span class="w"> </span>Host/Hypervisor&gt;
+</code></pre></div>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ipmitool<span class="w"> </span>lan<span class="w"> </span>print<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;MAC Address&quot;</span><span class="w"> </span>
+</code></pre></div>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># output here </span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>MAC<span class="w"> </span>Address<span class="w">             </span>:<span class="w"> </span>0c:c4:7a:3c:c9:ad
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># repeat for nodes B and C for unique IPMI MAC addresses</span>
+</code></pre></div></p>
+</div>
+</li>
+<li>
+<p>Access Node A IPMI through IP 10.42.xx.33 with ADMIN/ADMIN</p>
+<p><img alt="image" src="../images/image101.png" /></p>
+<p><img alt="image" src="../images/image102.png" /></p>
+</li>
+<li>
+<p>Record your NODE A/B/C BMC MAC address (in above example , it is <strong>ac:1f:6b:1e:95:eb</strong> )</p>
+<p>Doing the same with your other 2 nodes B/C, access Node B and C IPMI through IP 10.42.xx.34/35 with ADMIN/ADMIN, record all 3 BMC MAC addresses.</p>
+</li>
+<li>
+<p>Update the Node column to show "A, B, C", rather than A, A, A.</p>
+</li>
+<li>
+<p>Click <strong>Tools</strong> and select <strong>Range Autofill</strong> from the drop down list</p>
+</li>
+<li>
+<p>Replacing the octet(s) that correspond to your HPOC network, fill out the <strong>top row</strong> fields with the following details:</p>
+<ul>
+<li><strong>IPMI MAC</strong> - the three your just recorded down</li>
+<li><strong>IPMI IP</strong> - 10.42.xx.</li>
+<li><strong>Hypervisor IP</strong> - 10.42.xx.25</li>
+<li><strong>CVM IP</strong> - 10.42.xx.29</li>
+<li><strong>HOSTNAME OF HOST</strong> -- POCxx-A</li>
+</ul>
+<p><img alt="image" src="../images/image105.png" /></p>
+</li>
+<li>
+<p>Click <strong>Next</strong></p>
+</li>
+<li>
+<p>In the <strong>Cluster</strong> page, fill the following details:</p>
+<ul>
+<li><strong>Cluster Name</strong> - POCxx-ABC</li>
+<li><strong>Timezone of Every Hypervisor and CVM</strong> - America/Phoenix</li>
+<li><strong>Cluster Redundancy Factor</strong> - RF2</li>
+<li><strong>Cluster Virtual IP</strong> - 10.42.xx.37</li>
+<li>
+<p><strong>NTP Servers of Every Hypervisor and CVM</strong>:</p>
+<div class="highlight"><pre><span></span><code>0.pool.ntp.org
+1.pool.ntp.org
+2.pool.ntp.org
+3.pool.ntp.org
+</code></pre></div>
+</li>
+<li>
+<p><strong>DNS Servers of Every Hypervisor and CVM</strong> - 10.42.196.10</p>
+</li>
+<li><strong>vRAM Allocation for Every CVM, in Gigabytes</strong> - 32</li>
+</ul>
+<p><img alt="image" src="../images/foundation-cluster-config.png" /></p>
+</li>
+<li>
+<p>Click <strong>Next</strong></p>
+<ul>
+<li><strong>Select an AOS installer</strong> - Select your uploaded (through
+    command line in previous steps)
+    <em>nutanix_installer_package-release-</em>.tar.gz* file</li>
+<li><strong>Arguments to the AOS Installer (Optional)</strong> - leave blank</li>
+</ul>
+<p><img alt="image" src="../images/image106.png" /></p>
+</li>
+<li>
+<p>Click <strong>Next</strong></p>
+</li>
+<li>
+<p>Fill out the following fields and click <strong>Next</strong>:</p>
+<ul>
+<li><strong>Select a hypervisor installer</strong> - AHV, AHV installer bundled inside the AOS installer</li>
+</ul>
+<p><img alt="image" src="../images/image020.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Every AOS release contains a version of AHV bundle with that release.</p>
+</div>
+</li>
+<li>
+<p>Click <strong>Next</strong></p>
+</li>
+<li>
+<p>Enter the existing IPMI credentials as <strong>ADMIN</strong> and <strong>ADMIN</strong> for all three nodes. Note that this will be different in the field.</p>
+<p><img alt="image" src="../images/image021.png" /></p>
+</li>
+<li>
+<p>Click <strong>Start</strong></p>
+</li>
+<li>
+<p>Confirm that the installer will be active by clicking on <strong>Won't Sleep</strong></p>
+<p><img alt="image" src="../images/image021-confirm.png" /></p>
+</li>
+<li>
+<p>In the <strong>Warning of Data Loss Possibility</strong> window, click on <strong>Ignore and Re-image</strong></p>
+<p><img alt="image" src="../images/image021-ignore-warning.png" /></p>
+<p>Foundation will run a couple of tests to make sure all the configuration details you have provided are correct and then direct you the installation progress page.</p>
+</li>
+<li>
+<p>Click the <strong>Log</strong> link to view the realtime log output from your node.</p>
+<p><img alt="image" src="../images/image022.png" /></p>
+<p>When all CVMs are ready, Foundation initiates the cluster creation process.</p>
+</li>
+<li>
+<p>Monitor the foundation process until completion</p>
+<p><img alt="image" src="../images/image023.png" /></p>
+</li>
+<li>
+<p>Once Foundation finishes successully, either click on <strong>Click here</strong>
+    link as shown above or open <code>https://&lt;Cluster Virtual IP&gt;:9440</code> (10.42.xx.37)in your browser</p>
+</li>
+<li>
+<p>Log in with the following credentials:</p>
+<ul>
+<li><strong>Username</strong> - admin</li>
+<li><strong>Password</strong> - Prism Central default password (If you are not familair with this password, it can be found within the <a href="https://portal.nutanix.com/page/documents/details?targetId=Web-Console-Guide-Prism-v6_7:wc-login-wc-t.html">Prism Element Web Console Guide</a>, step 5.)</li>
+</ul>
+</li>
+<li>
+<p>When prompted, <strong>Change the Password</strong>  to use the same password from RX.</p>
+</li>
+<li>
+<p>Once the password is changed, you can login to Prism Element.</p>
+<p><img alt="image" src="../images/image024.png" /></p>
+</li>
+</ol>
+<h2 id="takeaways">Takeaways</h2>
+<p>You have successfully prepared your environment in a single operation called Foundation:</p>
+<ul>
+<li>Installed Hypervisor (AHV) - This can also be ESXi or Hyper-V</li>
+<li>Installed CVM (AOS)<ul>
+<li>Distributed File System (Data Plane)</li>
+<li>Prism Element (Control Plane) </li>
+</ul>
+</li>
+</ul>
+<p>Now we will proceed to install Prism Central(PC).  PC can manage several Prism Elements akin to cloud managers provided by public cloud providers. </p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2016 - 2024 Nutanix Enablement Practice
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "navigation.integrate", "search.highlight", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e1c3ead8.min.js"></script>
+      
+        <script src="../../termynal.js"></script>
+      
+    
+  </body>
+</html>
