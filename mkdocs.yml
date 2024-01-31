@@ -80,6 +80,7 @@ plugins:
       prompt_literal_start:
         - "$"
         - ">"
+        - ">>>"
   - search
 
 # # Style sheeting here
