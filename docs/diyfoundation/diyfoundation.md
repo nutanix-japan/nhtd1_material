@@ -56,6 +56,8 @@ Execute the following commands to power off any running VMs on the cluster, stop
 ```bash
 $ cluster stop
 # Enter 'I agree' when prompted to proceed
+---> 100%
+> cluster stopped
 ```
 #
 <!-- termynal -->
@@ -63,6 +65,8 @@ $ cluster stop
 ```bash
 $ cluster destroy
 # Enter 'Y' when prompted to proceed
+---> 100%
+> cluster destroyed
 ```
 
 Once you have made sure that all VMs and services are stopped, you can proceed to the next steps. 
