@@ -31,8 +31,8 @@ Upload the X-Ray Image
 
 ```bash
 $ acli image.create X-Ray container=Images image_type=kDiskImage  \
-  source_url=http://10.42.194.11/images/Xray/4.4.1/xray-4.4.1.qcow2
-  
+source_url=http://10.42.194.11/images/Xray/4.4.1/xray-4.4.1.qcow2
+
 ---> 100%
 > Image uploaded
 ```
@@ -300,11 +300,11 @@ resulting in a much faster time to complete ingesting the 1TB of data.
     with the results from multiple tests, this can be extremely useful
     for summarizing POC results.
 
-    !!!question 
-               Can you explain **why** the Nutanix solution may produce better results than common HCI competitors?
+    !!! question
+        Can you explain **why** the Nutanix solution may produce better results than common HCI competitors?
 
-    !!!tip 
-          Check out the [OpLog](https://www.nutanixbible.com/4c-book-of-aos-dsf.html#oplog) section of the Nutanix Bible
+    !!! tip 
+           Check out the [OpLog](https://www.nutanixbible.com/4c-book-of-aos-dsf.html#oplog) section of the Nutanix Bible
         
 ## Takeaways
 

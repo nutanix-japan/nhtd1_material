@@ -4,9 +4,6 @@ title: Foundation
 
 # Overview
 
-!!!info
-       Estimated time to complete: **60 Minutes**
-
 Foundation is used to automate the installation of the hypervisor and
 Controller VM on one or more nodes. In this exercise you will practice
 imaging a physical cluster with Foundation. In order to keep the lab
@@ -14,8 +11,11 @@ self-contained, you will create a single node cluster on which you
 will deploy your Foundation VM. That Foundation instance will be used to
 image and create a cluster from the remaining 3 nodes in the Block.
 
-!!!warning
-          In following steps, you should replace xx part of the IP octet with your assigned cluster ID
+!!! info
+    Estimated time to complete: **60 Minutes**
+
+!!! warning
+    In following steps, you should replace xx part of the IP octet with your assigned cluster ID
 
 ## DIY Environment
 
@@ -45,9 +45,9 @@ $ ssh -l nutanix 10.42.xx.32
 ```
 #
 
-!!!note
+!!! note
 
-       Occasionally, Node D is not deployed with .32 as the last octet. Make sure you check and confirm the correct IP address for Node D in your RX reservation.
+    Occasionally, Node D is not deployed with .32 as the last octet. Make sure you check and confirm the correct IP address for Node D in your RX reservation.
 
 Execute the following commands to power off any running VMs on the cluster, stop cluster services, and destroy the existing cluster:
 
