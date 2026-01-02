@@ -14,3 +14,6 @@ jobs:
           python-version: 3.x
       - run: pip install mkdocs-material termynal
       - run: mkdocs gh-deploy --force
+      - run: pip install markdown-grid-tables
+      - run: pip install pymdown-extensions
+

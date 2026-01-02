@@ -33,9 +33,7 @@ Minimum System Requirements:
 | ------ | ------------- | ------ | ------- |
 | 2 vCPU | 4 Cores       | 16 GiB | 300 GiB |
 
-## Create Jump Host VM
-
-### Deploy Application VM via Prism UI
+## Deploy Jumphost VM via Prism UI
 
 1. Log into Prism Central, navigate to Compute > VMs > Table view > + Create VM.​
 
@@ -80,6 +78,8 @@ Minimum System Requirements:
         - ssh-rsa AAAAB3Nxxxxxxxx ...                   # (2)
     runcmd:
       - systemctl stop ufw && systemctl disable ufw
+      - usermod -aG docker ubuntu
+      - 'su - ubuntu -c "curl -fsSL https://raw.githubusercontent.com/ariesbabu/ocp-gitp/refs/heads/main/docs/toolsvms/install_vscode_tools.sh | bash"'
       - eject
       - reboot
     ```
@@ -104,80 +104,75 @@ Minimum System Requirements:
 
 7. Verify VM powers on successfully in VM table and console
 
-### Initiate Remote-SSH Connection to Jumpbox using VSCode
 
-1. In VSCode, click on Settings menu icon (gear icon) :gear: > **Settings** > **Extensions**
-2. In the search window search for **Remote SSH**
-3. Install the [Remote-SSH Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh) from VSCode Marketplace
-4. click on the **Install** button for the extenstion.
+!!! warning 
 
-5. From your workstation, open **Visual Studio Code**.
+    It may take up to 10 minutes for the VM to be ready. The VM will reboot once to finish the installation process.
+    
+    You can watch the console of the VM from Prism Central to make sure all the cloudinit script has finished running.
+    
+    Cloudinit logs are stored in /var/log/cloud-init.log
 
-6. Click **View > Command Palette**.
-
-    ![](images/1.png)
-
-7. Click on **+ Add New SSH Host**
-
-    ![](images/2.png)
-
-8. Type ``ssh jumphost_VM-IP-ADDRESS``and hit **Enter**.
-
-    ![](images/2b.png)
-
-9. Select the location to update the config file.
-
-    === "Mac/Linux"
-
-        ```bash
-        /Users/<your-username>/.ssh/config
-        ```
-
-    === "Windows"
-
-        ```PowerShell
-        C:\\Users\\<your-username>\\.ssh\\config
-        ```
-
-10. Open the ssh config file on your workstation to verify the contents. It should be similar to the following content
-
-    ```yaml
-    Host jumphost
-        HostName 10.x.x.x # (1)!
-        IdentityFile ~/.ssh/id_rsa # (2)!
-        User ubuntu
+    Logon to the tools VM using SSH
+   
+    ```bash
+    ssh -l ubuntu _your_jumphost_ip # Get the IP address of the jumphost VM from Prism UI
     ```
-
-    1. :material-fountain-pen-tip: This is Jumphost VM IP address
-
-    2. :material-fountain-pen-tip: This would be the path to RSA private key generated in the previous [JumpHost](../infra/workstation.md#generate-a-rsa-key-pair) section
-
-    Now that we have saved the ssh credentials, we are able to connect to the jumphost VM
-
+       
+    If there are issues, monitor the cloudinit process logs
+         
+    ```bash
+    tail -f /var/log/cloud-init.log
+    ```
+             
+    Get the IP address of the jumphost VM from Prism UI
+              
 
 ### Connect to you Jumpbox using VSCode
 
-1. On `VSCode`, Click **View > Command Palette** and **Connect to Host**
+1. In you browser visit the following URL
+   
+    === "Template URL"
+ 
+        ```url
+        https://_your_jumphost_ip
+        ```
+ 
+    === "Sample URL"
+ 
+        ```url
+        https://10.54.63.96
+        ```
 
-2. Select the IP address of your `Jump Host` VM
+2. Enter ``_password`` as the password
 
-3. A **New Window** :material-dock-window: will open in `VSCode`
+3. Open the following file in VSCode Explorer window
 
-4. Click the **Explorer** button from the left-hand toolbar and select **Open Folder**.
+    ```bash
+    /home/ubuntu/.config/code-server/config.yaml
+    ```
 
-    ![](images/4.png)
+4. Change the password to your desired password
+   
+    ```bash {3}
+    bind-addr: 0.0.0.0:443  # Only bind to localhost
+    auth: password
+    password: _desired_password # Replace with a strong password
+    cert: true
+    ```
 
-5. Provide the ``$HOME/`` as the folder you want to open and click on **OK**.
+5. Restart VSCode server daemon
 
-    !!!note
-           Ensure that **bin** is NOT highlighted otherwise the editor will attempt to autofill ``/bin/``. You can avoid this by clicking in the path field *before* clicking **OK**.
+    ```bash
+    sudo systemctl restart code-server@$USER
+    ```
 
-    !!!warning
-           The connection may take up to 1 minute to display the root folder structure of the jumphost VM.
+!!! warning
 
-6. Accept any warning message about trusting the author of the folder
+    It will take a minute or so for VSCode to start 
+   
 
-    ![](images/6.png)
+6. Connect to VSCode on the browser and login using the new password 
 
 ### Install OpenTofu
 
@@ -185,14 +180,15 @@ Minimum System Requirements:
 
 To [Install OpenTofu](https://opentofu.org/docs/intro/install/standalone/), follow the steps below for your respective local workstation:
 
+1. In VSCode > Go to Terminal > New Terminal
+2. Execute the following commands
 
-
-```bash title="Download the installer script:"
-curl --proto '=https' --tlsv1.2 -fsSL https://get.opentofu.org/install-opentofu.sh -o install-opentofu.sh
-```
-```bash title="Give it execution permissions:"
-chmod +x install-opentofu.sh
-```
-```bash title="Run the installer:"
-./install-opentofu.sh --install-method standalone
-```
+    ```bash title="Download the Tofu installer script:"
+    curl --proto '=https' --tlsv1.2 -fsSL https://get.opentofu.org/install-opentofu.sh -o install-opentofu.sh
+    ```
+    ```bash title="Give it execution permissions:"
+    chmod +x install-opentofu.sh
+    ```
+    ```bash title="Run the installer:"
+    ./install-opentofu.sh --install-method
+    ```
