@@ -88,19 +88,9 @@
      sudo systemctl restart apache2
      ```
 
-22. Finish the Install in Browser
+23. Repeat all steps ``1-22`` to install Wordpress on the second frontend VM ``fe-user01-02``
 
-    On any browser, point to your web server’s IP, e.g.:
-    
-    ```url
-    http://_your_webserver_ip/wp-admin/install.php
-    ```
-
-23. Follow the WordPress setup wizard to complete installation.
-
-24. Repeat all steps to install Wordpress on the second frontend VM
-
-25. SSH to MySQL VM using the **VSCode > Terminal** :octicons-terminal-24:
+24. SSH to MySQL VM using the **VSCode > Terminal** :octicons-terminal-24:
   
     === "Command"
 

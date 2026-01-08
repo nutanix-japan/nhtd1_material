@@ -23,7 +23,7 @@ stateDiagram-v2
 
 ## Jump Host VM Requirements
 
-Based on the [Nutanix GPT-in-a-Box](https://opendocs.nutanix.com/gpt-in-a-box/kubernetes/v0.2/getting_started/#spec) specifications, the following system resources are required for the `Jump Host` VM:
+The following system resources are required for the `Jump Host` VM:
 
 - Target OS: `Ubuntu 24.04 LTS`
 
@@ -33,19 +33,43 @@ Minimum System Requirements:
 | ------ | ------------- | ------ | ------- |
 | 2 vCPU | 4 Cores       | 16 GiB | 300 GiB |
 
+## Upload Linux Tools VM Image
+ 
+!!! warning 
+
+    Check ifubuntu 24.04 image exists first before creating it
+
+    If you are in a lab environment, only one participant needs to add this.
+
+1. In **Prism Central** > Select **Compute and Storage** > **Images**
+
+2. Click on **Add Image**
+
+3. Select the URL radio button and paste the following image URL
+
+    ```url
+    https://cloud-images.ubuntu.com/releases/24.04/release/ubuntu-24.04-server-cloudimg-amd64.img
+    ```
+
+4. Click on **Upload File** and in the description
+
+5. Click on **Next** and select Place Image Directly on cluster
+
+6. Click on **Save**
+
 ## Deploy Jumphost VM via Prism UI
 
 1. Log into Prism Central, navigate to Compute > VMs > Table view > + Create VM.​
 
     - General: Name app-vm-01, 
     - 2 vCPU, 4GB RAM
-    - Boot Config: UEFI, attach Ubuntu/CentOS cloud image as SCSI disk 0.
+    - Boot Config: UEFI, attach Ubuntu cloud image as SCSI disk 0.
 
 2. NICs: Add NIC on your lab subnet (DHCP enabled).
     
 3. Create the cloud-init file in ``VScode`` 
    
-4. Fill in, paste userdata for hostname app-vm-01, user ubuntu/centos, SSH authorized_keys.
+4. Fill in, paste userdata for hostname app-vm-01, user ubuntu, SSH authorized_keys.
    
     ```yaml hl_lines="2 27"
     #cloud-config

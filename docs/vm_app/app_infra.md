@@ -27,7 +27,7 @@ In this section we will deploy four VMs. Deploy a production-like three-tier app
 
     === ":octicons-file-code-16: cloud-init.yaml.tpl"
 
-        ```yaml hl_lines="22" title=""
+        ```yaml hl_lines="26" title=""
         #cloud-config
         hostname: ${hostname}
         fqdn: ${hostname}.local
@@ -40,7 +40,10 @@ In this section we will deploy four VMs. Deploy a production-like three-tier app
           - open-iscsi
           - nfs-common
         runcmd:
+          - hostnamectl set-hostname ${hostname}
           - systemctl stop ufw && systemctl disable ufw
+          - eject
+          - reboot
         users:
           - default
           - name: ubuntu
@@ -49,9 +52,7 @@ In this section we will deploy four VMs. Deploy a production-like three-tier app
             sudo:
               - 'ALL=(ALL) NOPASSWD:ALL'
             ssh-authorized-keys:
-            - ssh-rsa AAAAB3Nxxxxxx # (1)
-        runcmd:
-          - hostnamectl set-hostname ${hostname}
+            - ssh-rsa AAAAB3Nxxxxx # (1)
         ```
 
         1. :material-fountain-pen-tip: Copy and paste the contents of your ``~/.ssh/id_rsa.pub`` file or any public key file that you wish to use.
@@ -169,7 +170,7 @@ In this section we will deploy four VMs. Deploy a production-like three-tier app
               disk_size_mib: 102400
           ```
 
-          1. Check Images in PC for ubuntu image name that was previously uploaded
+          2. Check Images in PC for ubuntu image name that was previously uploaded
    
 6. In `VSCode` Explorer pane, navigate to the ``jumphost-vm`` folder, click on **New File** :material-file-plus-outline: and create a opentofu manifest file with the following name:
 
@@ -320,7 +321,7 @@ In this section we will deploy four VMs. Deploy a production-like three-tier app
     tofu plan 
     ```
 
-10. Apply your tofu code to create Jump Host VM
+11. Apply your tofu code to create Jump Host VM
   
     ```bash
     tofu apply 
@@ -328,7 +329,7 @@ In this section we will deploy four VMs. Deploy a production-like three-tier app
 
     Type ``yes`` to confirm
 
-11. Obtain the IP address of the `Jump Host` VM from the Tofu output
+12. Obtain the IP address of the `Jump Host` VM from the Tofu output
   
     ``` { .bash .no-copy }
     vm_ips_by_role = {
@@ -364,7 +365,7 @@ In this section we will deploy four VMs. Deploy a production-like three-tier app
     ]
     ```
 
-12. Run the Terraform state list command to verify what resources have been created
+13. Run the Terraform state list command to verify what resources have been created
 
     ``` bash
     tofu state list
@@ -382,7 +383,7 @@ In this section we will deploy four VMs. Deploy a production-like three-tier app
     nutanix_virtual_machine.vm["haproxy-1"]   # < This is the haproxy vm
     ```
 
-13. Validate that all the infrastructure VMs are accessible using **VSCode > Terminal** :octicons-terminal-24:
+14. Validate that all the infrastructure VMs are accessible using **VSCode > Terminal** :octicons-terminal-24:
   
     === "Command"
 
@@ -392,6 +393,7 @@ In this section we will deploy four VMs. Deploy a production-like three-tier app
         ssh -l ubuntu <ip-address-of-fe-user01-02-vm>
         ssh -l ubuntu <ip-address-of-haproxy-user01-01>
         ``` 
+
     === "Command Sample"
 
         ```{ .text .no-copy }
@@ -400,5 +402,12 @@ In this section we will deploy four VMs. Deploy a production-like three-tier app
         ssh -l ubuntu 10.x.x.131
         ssh -l ubuntu 10.x.x.123
         ```     
+
+!!! warning
+
+    Wait for at least 5 minutes for all the VMs to install updates and reboot
+
+    Watch the events and Console in Prism Central.
+
 
 Now the infrastructure VMs are ready with all the tools to deploy application on this site. 

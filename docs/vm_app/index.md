@@ -2,8 +2,7 @@
 
 This lab demonstrates deploying a complete three-tier application on Nutanix AHV using multiple deployment methods: 
 
-* Prism UI, 
-* v4 REST API (cURL), and 
+* Prism UI
 * OpenTofu Infrastructure as Code (IaC)
 
 The stack includes HAProxy load balancer, Node.js/Express application, and PostgreSQL database.
@@ -27,8 +26,8 @@ The stack includes HAProxy load balancer, Node.js/Express application, and Postg
 
 Deploy a production-like three-tier application stack:
 
-- 1 x MySQL DB VM (v4 API cURL) - Persistent data storage
-- 2 x Frontend Wordpress App VM (Prism UI)
+- 1 x MySQL DB VM - Persistent data storage
+- 2 x Frontend Wordpress App VM
 - 1 x HAProxy VM - Load balancer frontend
   
 The application provides a todo list REST API accessible via `http://haproxy-ip/todos`.

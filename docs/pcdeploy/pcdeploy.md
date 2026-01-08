@@ -15,7 +15,7 @@ This lab will introduce Prism Central's(PC) One-Click deploy process
 
     The Primary network is for PC and other VMs deployment, the Secondary network is requried in X-Ray lab
 
-1. Open ``https://POCxx-ABC Cluster IP:9440`` (https://10.42.xx.37:9440)
+1. Open ``https://_cluster_IP:9440`` (https://10.42.xx.37:9440)
 in your browser and log in with the following credentials:
 
     -  **Username** - admin
@@ -23,16 +23,16 @@ in your browser and log in with the following credentials:
 
 1.  In the Prism Element UI click :fontawesome-solid-gear: > **Network Configuration > Create Subnet**
 
-1.  Fill out the following fields:
+2.  Fill out the following fields:
 
     -  **Name** - Primary
     -  **Virtual Switch** - vs0
     -  **VLAN ID** - 0
     -  **Enable IP address management** - leave it unselected
 
-1.  Click **Save**
+3.  Click **Save**
 
-1.  Create the second network by clicking on **+ Create Subnet** with
+4.  Create the second network by clicking on **+ Create Subnet** with
     the following details:
 
     -  **Name** - Secondary
@@ -41,9 +41,9 @@ in your browser and log in with the following credentials:
         VLAN ID would be **791**)
     -  **Enable IP address management** - leave it unselected
 
-1.  Click **Save**
+5.  Click **Save**
 
-1.  You should see two networks as shown here
+6.  You should see two networks as shown here
 
     ![](images/image001.png)
 
@@ -62,34 +62,33 @@ in your browser and log in with the following credentials:
 
     ![](images/2.png)
 
-1.  If no compatiable versions of PC are listed, download the .tar and .json file for latest version from [portal.nutanix.com](https://portal.nutanix.com/page/downloads?product=prism), and then upload the installation binary, before clicking Next.
+2. In the **Version** page, enter the following details 
 
-1. and click **Deploy 1-VM PC**
+     - **Create PC Name** - PC
+     - **Available versions** - pc.7.5.0.2
 
-    ![](images/3.png)
+3. In the **Size and Scale** page, Choose **Small** (S)
+4. Click **Next** 
+5. IN the Configuration page, fill out the following fields:
 
-1.  Fill out the following fields:
 
-    -  **PC Size** - Small - (Up to 2500 VMs)
     -  **Network** - Primary
-    -  **Subnet Mask** - 255.255.255.128
-    -  **Gateway** - 10.42.XX.1
-    -  **DNS Address(es)** - 10.42.196.10
+    -  **Subnet Mask** - choose from json file provided
+    -  **Gateway** - choose from json file provided
+    -  **DNS Address(es)** - choose from json file provided
     -  **NTP Address(es)** - 0.pool.ntp.org
     -  **Select A Container** - SelfServiceContainer
     -  **VM Name** - PC
-    -  **IP Address** - 10.42.XX.39
+    -  **IP Address** - ``10.x.x.7``
 
-    ![](images/4.png)
+6. Click **Deploy**
 
-1. Click **Next**
+7.  For Microservices, click **Next**.
 
-1. For Microservices, click **Next**.
-
-1.  Click **Deploy**
+8.  Click **Deploy**
 
     !!!note
-           The deployment will take about 30 mins, you can go to next lab sessions while waiting. After Prism Central VM is successfully deployed, open ``https://*PC VM IP*:9440`` (https://10.42.xx.39:9440) in your browser and log in with the following credentials:
+           The deployment will take about 30 mins, you can go to next lab sessions while waiting. After Prism Central VM is successfully deployed, open ``https://_PC_VM IP:9440`` (https://10.42.xx.39:9440) in your browser and log in with the following credentials:
 
 
 1.  When the deployment finishes, browse to your Prism Central IP

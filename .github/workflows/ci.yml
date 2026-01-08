@@ -16,4 +16,3 @@ jobs:
       - run: mkdocs gh-deploy --force
       - run: pip install markdown-grid-tables
       - run: pip install pymdown-extensions
-

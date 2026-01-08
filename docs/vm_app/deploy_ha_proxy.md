@@ -26,7 +26,7 @@
     Edit configurations:
     
     ```bash
-    sudo vim /etc/haproxy/haproxy.cfg
+    sudo nano /etc/haproxy/haproxy.cfg
     ```
 
     Replace or append:
@@ -38,7 +38,8 @@
     
     backend web_servers
         balance roundrobin
-        server web1 _your_web_server_ip:80 check
+        server web1 _your_fe1_server_ip:80 check
+        server web2 _your_fe2_server_ip:80 check
     ```
 
 6. Enable and Restart HAProxy
@@ -62,12 +63,18 @@
 
 ## Validation
 
-1. Test Load Balancing
+1. Finish the Wordpress install in Browser
+
+    On any browser, point to your web server’s IP, e.g.:
+    
+    ```url
+    http://_your_webserver_ip/wp-admin/install.php
+    ```
+
+2. Test Load Balancing
 
     Open a browser to point to your HAProxy VM IP.
     
     ```url
-    http://192.168.1.10
+    http://<HAPROXY_IP>:8404/stats
     ```
-    
-    Refresh multiple times — requests should alternate between frontend servers.

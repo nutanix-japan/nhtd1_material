@@ -14,8 +14,13 @@
         ssh -l ubuntu 10.x.x.124
         ```     
 
+2. Install MySQL
+   
+    ```bash
+    sudo apt install mysql-server
+    ```
 
-2. Secure MySQL Installation. Run the built-in script to improve security (set root password, remove test DB, disallow anonymous login, etc.)
+3. Secure MySQL Installation. Run the built-in script to improve security (set root password, remove test DB, disallow anonymous login, etc.)
    
     Follow prompts to:
     
@@ -89,13 +94,15 @@
         All done! 
         ```
 
-3. Create Database & User, login to MySQL:
+4. Create Database & User, login to MySQL:
    
     ```bash
     sudo mysql -u root -p
+    # Press enter to login. There is no password set yet
     ```
 
-4. Inside MySQL prompt, run the following database setup commands:
+
+5. Inside MySQL prompt, run the following database setup commands:
 
     ```sql
     CREATE DATABASE appdb;
@@ -105,10 +112,10 @@
     EXIT;
     ```
 
-5.  Allow Remote Connections to MySQL database
+6.  Allow Remote Connections to MySQL database
     
      ```bash
-     sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
+     sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
      ```
     
     Find:
@@ -123,7 +130,7 @@
      bind-address = 0.0.0.0
      ```
 
-6. Restart MySQL:
+7. Restart MySQL:
 
     ```bash
     sudo systemctl restart mysql
