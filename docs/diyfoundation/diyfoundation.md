@@ -57,43 +57,6 @@ To shorten the lab time, we use command line to access foundation VM and downloa
     $ curl -o AHV-DVD-x86_64-11.0-1900.iso "_url_copied_from_download_page"
     ```
 
-## Perform Foundation
-
-1.  From you desktop computer, open Google Chrome browser and navigate to Foundation VM's IP
-
-5.  Access Foundation UI via any browser at ``http://_Foundation_VM_IP`
-
-6.  Fill the following field values with the JSON file that your instructor provides:
-
-    -   **Select your hardware platform**: Autodetect
-    -   **Netmask of Every Host and CVM** - use JSON file values
-    -   **Gateway of Every Host and CVM** - use JSON file values
-    -   **Gateway of Every IPMI** - use JSON file values
-    -   **Netmask of Every IPMI** - use JSON file values
-    -   Under **Double-check this installer's networking step**
-    -   **Skip this Validation** - selected
-
-    ![image](images/image014.png)
-
-7.  On the **Nodes** page, click on **Discover** and this will fail
-    
-    ??? tip "Why is discovery failing?"
-
-        Foundation will automatically discover any hosts in the same IPv6 Link Local broadcast domain that is not already part of a cluster. 
-        
-        We are choosing manual here as the Foundation VM is not in the same L2 switch as the nodes and the discovery cannot happen using IPv6.
-
-        You should be able to do this if the Foundation VM is connected to the same L2 switch.
-
-        When transferring POC assets in the field, it's not uncommon to receive a cluster that wasn't properly destroyed at the conclusion of the previous POC. In that case, the nodes are already part of existing clusters and will not be discovered. 
-        
-        In this lab, we choose manually specify the MAC address instead in order to practice as the real world.
-
-8. Click on Add IPMI Nodes Manually
-9. Enter ``4`` as the number of nodes
-10. Select **I will provide their IPMIs' MAC addresses. The IPMIs and this Foundation are in the same L2 domain.** 
-    
-11. Click **Add**
 
 ## Find MAC Address of Nodes
 
@@ -129,11 +92,59 @@ To shorten the lab time, we use command line to access foundation VM and downloa
     Doing the same with your other 3 nodes B/C, access Node B and C IPMI through IP 10.42.xx.34/35 with ADMIN/ADMIN, record all 3 BMC MAC addresses.
 
 
+## Perform Foundation
+
+1.  From you desktop computer, open Google Chrome browser and navigate to Foundation VM's IP
+
+5.  Access Foundation UI via any browser at ``http://_Foundation_VM_IP`
+
+3. Click on **import the configuration file.** and upload the JSON file provided to you.
+    
+4.  Check the following field values with the JSON file that your instructor provides:
+
+    -   **Select your hardware platform**: Autodetect
+    -   **Netmask of Every Host and CVM** - use JSON file values
+    -   **Gateway of Every Host and CVM** - use JSON file values
+    -   **Gateway of Every IPMI** - use JSON file values
+    -   **Netmask of Every IPMI** - use JSON file values
+    -   Under **Double-check this installer's networking step**
+    -   **Skip this Validation** - selected
+
+    ![image](images/image014.png)
+
+5.  On the **Nodes** page, click on **Discover** and this will fail
+    
+    ??? tip "Why is discovery failing?"
+
+        Foundation will automatically discover any hosts in the same IPv6 Link Local broadcast domain that is not already part of a cluster. 
+        
+        We are choosing manual here as the Foundation VM is not in the same L2 switch as the nodes and the discovery cannot happen using IPv6.
+
+        You should be able to do this if the Foundation VM is connected to the same L2 switch.
+
+        When transferring POC assets in the field, it's not uncommon to receive a cluster that wasn't properly destroyed at the conclusion of the previous POC. In that case, the nodes are already part of existing clusters and will not be discovered. 
+        
+        In this lab, we choose manually specify the MAC address instead in order to practice as the real world.
+
+6.  Choose one node and click **Convert to manual**
+
+    ![image](images/convert_to_manual.png)
+
+
+9. Choose the following options:
+
+    - **Which nodes do you want to convert to manual nodes?** - All non-discovering nodes
+    - **I have configured their IPMIs to my desired IP addresses** (as this is out of factory setting for MAC address)
+  
+    ![image](images/discovery_options.png)
+
+10. Click on **Convert**
+
 ## Configure Node Parameeters
 
 1. Return the Foundation UI - Update the Node column to show "A, B, C, D" (if they don't appear that way)
 
-2.  Replacing the octet(s) that correspond to your HPOC network, fill out the **top row** fields with the following details:
+2.  Replacing the octet(s) that correspond to your HPOC network, check the **top row** fields with the following details:
 
     -   **IPMI MAC** - the four you just recorded down
     -   **IPMI IP** - use JSON file values
@@ -160,7 +171,7 @@ To shorten the lab time, we use command line to access foundation VM and downloa
 
      - **LUKS (Linux Unified Key Store)** - choose I don't want to enable LUKS
 5.  Click **Next**
-5.  In the **Cluster** page, fill the following details:
+6.  In the **Cluster** page, fill the following details:
 
     -   **Cluster Name** - POCxx-ABC
     -   **Prism Central Registration** - I don't want to register this cluster to a Prism Central
@@ -173,54 +184,54 @@ To shorten the lab time, we use command line to access foundation VM and downloa
 
     -   **DNS Servers of Every Hypervisor and CVM** - use JSON file values
 
-6.  Click **Next**
+7.  Click **Next**
 
-7. In the **Security** page
+8. In the **Security** page
     
     - Set cluster password - ask your instructor
     - Cluster lockdown - leave at default (Cluster Lockdown Disabled)
    
-8.  Click **Next**
+9.  Click **Next**
 
-9.  Enter the existing IPMI credentials as **ADMIN** and **ADMIN** for all three nodes. Note that this will be different in the field.
+10. Enter the existing IPMI credentials as **ADMIN** and **ADMIN** for all three nodes. Note that this will be different in the field.
 
-10. Click **Start**
+11. Click **Start**
 
-11. Confirm that the installer will be active by clicking on **Won't Sleep**
+12. Confirm that the installer will be active by clicking on **Won't Sleep**
 
     ![image](images/image021-confirm.png)
 
-12. In the **Warning of Data Loss Possibility** window, click on **Ignore and Re-image**
+13. In the **Warning of Data Loss Possibility** window, click on **Ignore and Re-image**
 
     ![image](images/image021-ignore-warning.png)
 
     Foundation will run a couple of tests to make sure all the configuration details you have provided are correct and then direct you the installation progress page.
 
-13. Click the **Log** link to view the realtime log output from your nodes
+14. Click the **Log** link to view the realtime log output from your nodes
 
     When all CVMs are ready, Foundation initiates the cluster creation process.
 
-14. Monitor the foundation process until completion
+15. Monitor the foundation process until completion
 
     ![image](images/foundation_done.png)
 
-15. Once Foundation finishes successully, either click on **Open Prism**
+16. Once Foundation finishes successully, either click on **Open Prism**
     link as shown above or open ``https://<Cluster Virtual IP>:9440`` (10.42.xx.37)in your browser
 
-16. Log in with the following credentials:
+17. Log in with the following credentials:
 
     -   **Username** - admin
     -   **Password** - Prism Central default password (If you are not familair with this password, it can be found within the [Prism Element Web Console Guide](https://portal.nutanix.com/page/documents/details?targetId=Web-Console-Guide-Prism-v6_7:wc-login-wc-t.html), step 5.)
 
-17. When prompted, **Change the Password**  to use the same password from RX.
+18. When prompted, **Change the Password**  to use the same password from RX.
 
-18. Once the password is changed, you can login to Prism Element.
+19. Once the password is changed, you can login to Prism Element.
 
     ![image](images/image024.png)
 
-19. Enter admin details and enable Pulse 
-20. Click Continue
-21. Analyse the Dashboard
+20. Enter admin details and enable Pulse 
+21. Click Continue
+22. Analyse the Dashboard
 
 ## Takeaways
 
