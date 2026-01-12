@@ -6,10 +6,8 @@ title: Foundation
 
 Foundation is used to automate the installation of the hypervisor and
 Controller VM on one or more nodes. In this exercise you will practice
-imaging a physical cluster with Foundation. In order to keep the lab
-self-contained, you will create a single node cluster on which you
-will deploy your Foundation VM. That Foundation instance will be used to
-image and create a cluster from the remaining 3 nodes in the Block.
+imaging a physical cluster with Foundation. That Foundation instance will be used to
+image and create a cluster from the remaining 4 nodes in the Block.
 
 !!! info
     Estimated time to complete: **60 Minutes**
@@ -33,8 +31,8 @@ To shorten the lab time, we use command line to access foundation VM and downloa
 
 
     ```{ .text .no-copy }
-    $ ssh -l nutanix <Foundation VM IP>  
-    # use default password - ask instructor if you are unaware   
+    $ ssh -l nutanix _Foundation_VM_IP  # - ask instructor if you are unaware 
+    # use default password # ask instructor if you are unaware   
     ```
 
 2. Download the **AOS** installer by copying the file name and url from the Downloads page to the command below
