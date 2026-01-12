@@ -48,7 +48,7 @@ To shorten the lab time, we use command line to access foundation VM and downloa
 3. Download the **AHV** installer by copying the file name and url from the Downloads page to the command below
     
     !!!note
-           At the time of writing this lab, AHV 11 is the latest available version. The URL for the latest Foundation VM QCOW2 image can be downloaded from the [Nutanix Portal NOS](https://portal.nutanix.com/page/downloads?product=ahv)
+           At the time of writing this lab, AHV 11 is the latest available version. The URL for the latest Foundation VM QCOW2 image can be downloaded from the [Nutanix Portal AHV](https://portal.nutanix.com/page/downloads?product=ahv)
     
     ```{ .text .no-copy }
     $ cd /home/nutanix/foundation/isos/hypervisor/kvm
