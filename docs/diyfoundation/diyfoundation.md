@@ -51,7 +51,7 @@ To shorten the lab time, we use command line to access foundation VM and downloa
            At the time of writing this lab, AHV 11 is the latest available version. The URL for the latest Foundation VM QCOW2 image can be downloaded from the [Nutanix Portal NOS](https://portal.nutanix.com/page/downloads?product=ahv)
     
     ```{ .text .no-copy }
-    $ cd /home/nutanix/foundation/isos/kvm
+    $ cd /home/nutanix/foundation/isos/hypervisor/kvm
     $ curl -o AHV-DVD-x86_64-11.0-1900.iso "_url_copied_from_download_page"
     ```
 
