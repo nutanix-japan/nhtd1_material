@@ -221,7 +221,7 @@ To shorten the lab time, we use command line to access foundation VM and downloa
     -   **Username** - admin
     -   **Password** - Prism Central default password (If you are not familair with this password, it can be found within the [Prism Element Web Console Guide](https://portal.nutanix.com/page/documents/details?targetId=Web-Console-Guide-Prism-v6_7:wc-login-wc-t.html), step 5.)
 
-18. When prompted, **Change the Password**  to use the same password from RX.
+18. When prompted, **Change the Password**  to use the same password given by your instructor.
 
 19. Once the password is changed, you can login to Prism Element.
 
