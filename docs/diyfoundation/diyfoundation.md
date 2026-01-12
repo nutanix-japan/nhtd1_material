@@ -168,10 +168,15 @@ To shorten the lab time, we use command line to access foundation VM and downloa
      ![image](images/ahv_installer.png)
 
      - **LUKS (Linux Unified Key Store)** - choose I don't want to enable LUKS
+  
 5.  Click **Next**
+
+## Configure 4-node Cluster
+
+
 6.  In the **Cluster** page, fill the following details:
 
-    -   **Cluster Name** - POCxx-ABC
+    -   **Cluster Name** - POCxxx (Eg POC206)
     -   **Prism Central Registration** - I don't want to register this cluster to a Prism Central
     -   **Timezone of Every Hypervisor and CVM** - UTC (leave default)
     -   **Cluster Redundancy Factor** - rf2_default
