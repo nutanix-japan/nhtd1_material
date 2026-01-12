@@ -89,19 +89,11 @@ To shorten the lab time, we use command line to access foundation VM and downloa
         
         In this lab, we choose manually specify the MAC address instead in order to practice as the real world.
 
-8.  Choose one node and click **Convert to manual**
-
-    ![image](images/convert_to_manual.png)
-
-
-9. Choose the following options:
-
-    - **Which nodes do you want to convert to manual nodes?** - All non-discovering nodes
-    - **I have configured their IPMIs to my desired IP addresses** (as this is out of factory setting for MAC address)
-  
-    ![image](images/discovery_options.png)
-
-10. Click on **Convert**
+8. Click on Add IPMI Nodes Manually
+9. Enter ``4`` as the number of nodes
+10. Select **I will provide their IPMIs' MAC addresses. The IPMIs and this Foundation are in the same L2 domain.** 
+    
+11. Click **Add**
 
 ## Find MAC Address of Nodes
 
