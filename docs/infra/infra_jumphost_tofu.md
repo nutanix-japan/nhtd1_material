@@ -57,11 +57,28 @@ Minimum System Requirements:
 
 6. Click on **Save**
 
+
+## Create SSH Keypair
+
+Execute the following commands in a Windows Powershell/Terminal to generate a private key.
+
+```bash
+ssh-keygen -t rsa -b 2048 -C "Created for Linux Tools VM"
+
+# follow prompts 
+# do not specify passphrase
+# once completed run the following command
+
+cat id_rsa.pub
+```
+
+Copy the contents of the id_rsa.pub file to your cloudinit yaml file
+
 ## Deploy Jumphost VM via Prism UI
 
 1. Log into Prism Central, navigate to Compute > VMs > Table view > + Create VM.​
 
-    - General: Name app-vm-01, 
+    - General: Name ``jumphost-user01``, 
     - 2 vCPU, 4GB RAM
     - Boot Config: UEFI, attach Ubuntu cloud image as SCSI disk 0.
 
@@ -69,9 +86,9 @@ Minimum System Requirements:
     
 3. Create the cloud-init file in ``VScode`` 
    
-4. Fill in, paste userdata for hostname app-vm-01, user ubuntu, SSH authorized_keys.
+4. Fill in, paste userdata for hostname ``jumphost-user01``, user ubuntu, SSH authorized_keys.
    
-    ```yaml hl_lines="2 27"
+    ```yaml hl_lines="2 28"
     #cloud-config
     hostname: jumphost-user01                  # (1)
     package_update: true
@@ -196,7 +213,7 @@ Minimum System Requirements:
     It will take a minute or so for VSCode to start 
    
 
-6. Connect to VSCode on the browser and login using the new password 
+Connect to VSCode on the browser and login using the new password 
 
 ### Install OpenTofu
 

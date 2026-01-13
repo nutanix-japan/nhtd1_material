@@ -11,7 +11,7 @@ In this section we will deploy four VMs. Deploy a production-like three-tier app
 
 1. Open `VSCode`, Go to File -> **New Window** :material-dock-window:, Click on **Open Folder** :material-folder-open: and create new workspace folder (i.e., ``/home/ubuntu``).
 
-2. In `VSCode` Explorer pane, Click on **New Folder** :material-folder-plus-outline: and name it: ``tofu`
+2. In `VSCode` Explorer pane, Click on **New Folder** :material-folder-plus-outline: and name it: ``tofu``
 
 3. In the ``tofu`` folder, click on **New File** :material-file-plus-outline: with the following name
   
