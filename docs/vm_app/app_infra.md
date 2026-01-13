@@ -6,6 +6,25 @@ In this section we will deploy four VMs. Deploy a production-like three-tier app
 - 2 x Frontend Wordpress App VM (Prism UI)
 - 1 x HAProxy VM - Load balancer frontend
 
+## Create SSH Keypair
+
+On the jumphost vm you created, create a ssh-keypair.
+
+In VSCode, open Terminal > New Terminal 
+
+Execute the following commands in a Windows Powershell/Terminal to generate a private key.
+
+```bash
+ssh-keygen -t rsa -b 2048
+
+# follow prompts 
+# do not specify passphrase
+# once completed run the following command
+
+cat id_rsa.pub
+```
+
+Record the contents of id_rsa.pub for use in the next section.
 
 ## Create Infrastructure VMs
 
